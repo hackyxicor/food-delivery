@@ -1,29 +1,104 @@
-// import {
-//     PlaceholderContainer,
-//     Placeholder
-// } from 'react-native-loading-placeholder';
-// import LinearGradient from 'react-native-linear-gradient';
-
 import React from 'react';
+import {
+    PlaceholderContainer,
+    Placeholder
+} from 'react-native-loading-placeholder';
+import LinearGradient from 'react-native-linear-gradient';
 import { ScaledSheet } from 'react-native-size-matters';
 
 import { View } from '../../UIComponents';
 
-import { Colors } from '../../Constants/theme.constants';
+const Gradient = () => {
+    return (
+        <LinearGradient
+            colors={['#eeeeee', '#dddddd', '#eeeeee']}
+            start={{ x: .5, y: 1.0 }}
+            end={{ x: 0.0, y: 0.0 }}
+            style={{
+                flex: 1,
+                width: 120
+            }}
+        />
+    );
+};
 
-const HomeScreenPlaceholder = () => (
-    <View style={styles.container} >
-        <View style={[styles.darkShadow, { width: 100, heigh: 100 }]} />
-    </View>
-)
+const HomeScreenPlaceholder = () => {
+    return (
+        <PlaceholderContainer
+            style={styles.placeholderContainer}
+            animatedComponent={<Gradient />}
+            duration={1000}
+            delay={1000}
+        >
+            <Placeholder style={[styles.placeholder, { width: '90%', height: 150 }]} />
+            <View style={{ flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'center' }}>
+                <View
+                    style={{
+                        flexDirection: 'column',
+                        width: '100%',
+                    }}
+                >
+                    <Placeholder
+                        style={[
+                            styles.placeholder,
+                            {
+                                width: '50%',
+                                height: 10
+                            }
+                        ]}
+                    />
+                    <Placeholder
+                        style={[
+                            styles.placeholder,
+                            {
+                                width: '35%',
+                                height: 7
+                            }
+                        ]}
+                    />
+                </View>
+            </View>
+
+            <Placeholder
+                style={[styles.placeholder, { marginTop: 20, width: '80%' }]}
+            />
+            <Placeholder style={[styles.placeholder, { width: '90%' }]} />
+            <Placeholder style={[styles.placeholder, { width: '50%' }]} />
+            <Placeholder
+                style={[styles.placeholder, { marginTop: 20, width: '80%' }]}
+            />
+
+            <Placeholder style={[styles.placeholder, { width: '90%' }]} />
+            <Placeholder style={[styles.placeholder, { width: '50%' }]} />
+
+            <Placeholder style={[styles.placeholder, { width: '90%', height: 150 }]} />
+            <Placeholder style={[styles.placeholder, { width: '90%', height: 150 }]} />
+        </PlaceholderContainer>
+    );
+};
+
+export default HomeScreenPlaceholder;
 
 const styles = ScaledSheet.create({
     container: {
         flex: 1,
+        alignItems: 'center',
+        paddingTop: 25,
     },
-    darkShadow: {
-        backgroundColor: Colors.PrimaryText
+    placeholderContainer: {
+        flex: 1,
+        backgroundColor: '#fff',
+    },
+    placeholder: {
+        height: 8,
+        marginTop: 6,
+        marginLeft: 15,
+        alignSelf: 'flex-start',
+        justifyContent: 'center',
+        backgroundColor: '#eeeeee'
+    },
+    row: {
+        flexDirection: 'row',
+        width: '100%'
     }
-})
-
-export default HomeScreenPlaceholder;
+});

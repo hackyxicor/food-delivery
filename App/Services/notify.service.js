@@ -5,10 +5,14 @@ class NotifyService {
         this.alert = ref;
     }
 
-    static notify(message) {
-        if (this.alert) {
-            this.alert.alertWithType('error', 'Error', message);
-        }
+    static notify({ title, message, type, duration }) {
+        setTimeout(() => {
+            requestAnimationFrame(() => {
+                if (this.alert) {
+                    this.alert.alertWithType(type, title, message);
+                }
+            });
+        }, 100);
     }
 }
 
