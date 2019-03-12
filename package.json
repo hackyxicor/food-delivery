@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "babel-preset-react-native-stage-0": "^1.0.1",
     "lottie-react-native": "^2.5.11",
     "react": "16.6.3",
     "react-native": "0.58.6",
@@ -15,7 +16,8 @@
     "react-native-bottom-action-sheet": "0.0.20",
     "react-native-calendars": "1.22.0",
     "react-native-dropdownalert": "3.9.2",
-    "react-native-interactions": "^0.4.0",
+    "react-native-interactions": "0.4.0",
+    "react-native-linear-gradient": "^2.5.3",
     "react-native-loading-placeholder": "0.0.6",
     "react-native-location": "2.2.0",
     "react-native-popup-dialog": "0.17.0",
