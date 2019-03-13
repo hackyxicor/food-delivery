@@ -138,6 +138,9 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-gesture-handler')
+    implementation("com.android.support:support-v4:28.0.0")
+    implementation project(':react-native-fast-image')
     implementation project(':react-native-network-state')
     implementation project(':react-native-linear-gradient')
     implementation project(':lottie-react-native')

@@ -4886,6 +4886,18 @@ react-native-dropdownalert@3.9.2:
   dependencies:
     prop-types "15.5.10"
 
+react-native-fast-image@^5.2.0:
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/react-native-fast-image/-/react-native-fast-image-5.2.0.tgz#6730eb06951ea6f9a79abe02a733bc05b7a73412"
+
+react-native-gesture-handler@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-1.1.0.tgz#2a7d545ad2e0ca23adce22b2af441ad360ecccee"
+  dependencies:
+    hoist-non-react-statics "^2.3.1"
+    invariant "^2.2.2"
+    prop-types "^15.5.10"
+
 react-native-gesture-handler@~1.0.14:
   version "1.0.17"
   resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-1.0.17.tgz#a046f371f277092157fc2781323d35a02a93daaf"
@@ -4911,7 +4923,7 @@ react-native-loading-placeholder@0.0.6:
   dependencies:
     prop-types "^15.5.10"
 
-react-native-location@2.2.0:
+react-native-location@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/react-native-location/-/react-native-location-2.2.0.tgz#7eb1ce4be4a141035f87756ba08fe2e9b0b98134"
 

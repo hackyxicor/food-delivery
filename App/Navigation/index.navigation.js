@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View } from 'react-native';
-import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
+import { createBottomTabNavigator, createAppContainer, createStackNavigator } from 'react-navigation';
 
 
 import MDI from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -12,12 +12,16 @@ import HomeScreen from '../Screen/Home-Screen/home.screen';
 
 const TabNavigator = createBottomTabNavigator(
     {
-        Home: HomeScreen,
-        Search: HomeScreen,
-        Orders: HomeScreen,
-        Account: HomeScreen,
+        Home: { screen: HomeScreen },
+        Search: { screen: HomeScreen },
+        Orders: { screen: HomeScreen },
+        Account: { screen: HomeScreen },
     },
     {
+        initialRouteName: 'Home',
+        order: ['Home', 'Search', 'Orders', 'Account'],
+        backBehavior: 'initialRoute',
+        lazy: true,
         defaultNavigationOptions: ({ navigation }) => ({
             tabBarIcon: ({ focused, horizontal, tintColor }) => {
                 const { routeName } = navigation.state;
@@ -29,6 +33,7 @@ const TabNavigator = createBottomTabNavigator(
         tabBarOptions: {
             activeTintColor: Colors.Primary,
             inactiveTintColor: Colors.Devider,
+            allowFontScaling: false
         },
     }
 );

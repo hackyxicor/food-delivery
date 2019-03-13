@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
-import { Image } from 'react-native';
+import FastImage from 'react-native-fast-image'
+
 
 class UIImage extends Component {
     render() {
-        return <Image {...this.props} />
+        return (
+            <FastImage
+                resizeMode={FastImage.resizeMode.contain}
+                {...this.props}
+            />
+        )
     }
 }
 
