@@ -9,11 +9,12 @@ import { Colors } from '../Constants/theme.constants';
 
 //Import Screens
 import HomeScreen from '../Screen/Home-Screen/home.screen';
+import ResolveLocaitonScreen from '../Screen/Resolve-Location-Screen/resolveLocation.screen';
 
 const TabNavigator = createBottomTabNavigator(
     {
         Home: { screen: HomeScreen },
-        Search: { screen: HomeScreen },
+        Search: { screen: ResolveLocaitonScreen },
         Orders: { screen: HomeScreen },
         Account: { screen: HomeScreen },
     },

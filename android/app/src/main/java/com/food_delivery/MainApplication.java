@@ -3,6 +3,7 @@ package com.food_delivery;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.marianhello.bgloc.react.BackgroundGeolocationPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.dylanvann.fastimage.FastImageViewPackage;
 import com.reactnativevietnam.RNNetworkStatePackage;
@@ -31,6 +32,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new BackgroundGeolocationPackage(),
             new RNGestureHandlerPackage(),
             new FastImageViewPackage(),
             new RNNetworkStatePackage(),
