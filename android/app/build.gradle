@@ -103,6 +103,7 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
     }
     splits {
         abi {
@@ -138,6 +139,8 @@ android {
 }
 
 dependencies {
+    implementation 'com.android.support:multidex:1.0.0'
+    implementation project(':appcenter-push')
     implementation project(':appcenter-crashes')
     implementation project(':appcenter-analytics')
     implementation project(':appcenter')

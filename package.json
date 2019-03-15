@@ -10,6 +10,7 @@
     "appcenter": "1.12.2",
     "appcenter-analytics": "1.12.2",
     "appcenter-crashes": "1.12.2",
+    "appcenter-push": "^1.12.2",
     "axios": "^0.18.0",
     "babel-preset-react-native-stage-0": "^1.0.1",
     "lottie-react-native": "^2.5.11",
