@@ -1,3 +1,5 @@
+import { DefaultTheme } from 'react-native-paper';
+
 module.exports = {
     Colors: {
         DarkPrimary: '#D32F2F',
@@ -11,5 +13,13 @@ module.exports = {
         SecondaryText: '#757575',
         Devider: '#BDBDBD',
         Surface: '#FFFFFF',
+    },
+    Theme: {
+        ...DefaultTheme,
+        colors: {
+            ...DefaultTheme.colors,
+            primary: this.Colors.Primary,
+            accent: this.Colors.Accent,
+        }
     }
 }
