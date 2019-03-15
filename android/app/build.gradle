@@ -138,6 +138,9 @@ android {
 }
 
 dependencies {
+    implementation project(':appcenter-crashes')
+    implementation project(':appcenter-analytics')
+    implementation project(':appcenter')
     implementation project(':react-native-mauron85-background-geolocation')
     implementation project(':react-native-gesture-handler')
     implementation("com.android.support:support-v4:28.0.0")

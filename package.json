@@ -7,13 +7,15 @@
     "test": "jest"
   },
   "dependencies": {
+    "appcenter": "1.12.2",
+    "appcenter-analytics": "1.12.2",
+    "appcenter-crashes": "1.12.2",
     "axios": "^0.18.0",
     "babel-preset-react-native-stage-0": "^1.0.1",
     "lottie-react-native": "^2.5.11",
     "react": "16.6.3",
     "react-native": "0.58.6",
     "react-native-android-location-enabler": "1.0.8",
-    "react-native-bottom-action-sheet": "0.0.20",
     "react-native-calendars": "1.22.0",
     "react-native-dropdownalert": "3.9.2",
     "react-native-fast-image": "^5.2.0",
