@@ -16,6 +16,8 @@ target 'food_delivery' do
   platform :ios, '9.0'
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
+  pod 'CodePush', :path => '../node_modules/react-native-code-push'
+
   target 'food_deliveryTests' do
     inherit! :search_paths
     # Pods for testing
