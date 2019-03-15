@@ -1,16 +1,13 @@
 import React, { Component, Fragment } from 'react';
 import DropdownAlert from 'react-native-dropdownalert';
-import { ScaledSheet } from 'react-native-size-matters';
-import NetworkState, { Settings } from 'react-native-network-state'
-
+import NetworkState from 'react-native-network-state'
+import codePush from "react-native-code-push";
 
 //import root navigator
 import RootNavigator from './App/Navigation/index.navigation';
-import { View } from './App/UIComponents';
-
 import NotifyService from './App/Services/notify.service';
 
-export default class App extends Component {
+class App extends Component {
   render() {
     return (
       <Fragment>
@@ -26,9 +23,4 @@ export default class App extends Component {
   }
 }
 
-
-const styles = ScaledSheet.create({
-  container: {
-    flex: 1
-  }
-})
+export default codePush()(App);
