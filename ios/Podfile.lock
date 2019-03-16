@@ -8,35 +8,54 @@ PODS:
     - AppCenter/Core
   - AppCenterReactNativeShared (1.12.2):
     - AppCenter/Core (= 1.13.2)
+  - Base64 (1.1.2)
+  - CodePush (5.5.3):
+    - Base64 (~> 1.1)
+    - JWT (~> 3.0.0-beta.7)
+    - React
+    - SSZipArchive (~> 2.1)
+  - JWT (3.0.0-beta.11):
+    - Base64 (~> 1.1.2)
   - React (0.11.0):
     - React/Core (= 0.11.0)
   - React/Core (0.11.0)
   - RNVectorIcons (6.3.0):
     - React
+  - SSZipArchive (2.1.4)
 
 DEPENDENCIES:
   - AppCenter/Analytics (~> 1.13.2)
   - AppCenter/Crashes (~> 1.13.2)
   - AppCenter/Push (~> 1.13.2)
   - AppCenterReactNativeShared (~> 1.12.2)
+  - CodePush (from `../node_modules/react-native-code-push`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AppCenter
     - AppCenterReactNativeShared
+    - Base64
+    - JWT
     - React
+    - SSZipArchive
 
 EXTERNAL SOURCES:
+  CodePush:
+    :path: "../node_modules/react-native-code-push"
   RNVectorIcons:
     :path: "../node_modules/react-native-vector-icons"
 
 SPEC CHECKSUMS:
   AppCenter: bce7fe1098e8e8aeb70aaae1898600534069f549
   AppCenterReactNativeShared: 6c0750b874f3242c47cb64083e23b835975c6aa2
+  Base64: cecfb41a004124895a7bcee567a89bae5a89d49b
+  CodePush: b38bb18614e7c76e605314c98788b113be6f6850
+  JWT: 05028b9624591bba9681bb57df2c5f95fa258bad
   React: ab1a2e21deb34965c38328d5ec40cc7d12c6050a
   RNVectorIcons: cb42a5653c046f12ca16c9480c571b52620559e8
+  SSZipArchive: 41455d4b8d2b6ab93990820b50dc697c2554a322
 
-PODFILE CHECKSUM: 92311d3127ef62038358c961a48ac7ca1408e153
+PODFILE CHECKSUM: fadfadd3a3de659cafc524118bdd00d9db90c1e2
 
 COCOAPODS: 1.6.1
