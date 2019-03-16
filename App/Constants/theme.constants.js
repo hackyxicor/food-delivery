@@ -13,13 +13,14 @@ module.exports = {
         SecondaryText: '#757575',
         Devider: '#BDBDBD',
         Surface: '#FFFFFF',
+        OnPrimary: '#FFFFFF',
     },
     Theme: {
         ...DefaultTheme,
         colors: {
             ...DefaultTheme.colors,
-            primary: this.Colors.Primary,
-            accent: this.Colors.Accent,
+            primary: '#D32F2F',
+            accent: '#FFC107',
         }
     }
 }

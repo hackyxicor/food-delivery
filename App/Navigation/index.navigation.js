@@ -10,6 +10,7 @@ import { Colors } from '../Constants/theme.constants';
 //Import Screens
 import HomeScreen from '../Screen/Home-Screen/home.screen';
 import ResolveLocaitonScreen from '../Screen/Resolve-Location-Screen/resolveLocation.screen';
+import App from '../Screen/Resolve-App-Screen/resolveApp.screen';
 
 const TabNavigator = createBottomTabNavigator(
     {
@@ -39,4 +40,19 @@ const TabNavigator = createBottomTabNavigator(
     }
 );
 
-export default createAppContainer(TabNavigator);
+const RootNavigator = createStackNavigator(
+    {
+        App: {
+            screen: App,
+            navigationOptions: {
+                header: null,
+            }
+        },
+        Tabs: { screen: TabNavigator }
+    },
+    {
+        initialRouteName: 'App'
+    }
+)
+
+export default createAppContainer(RootNavigator);

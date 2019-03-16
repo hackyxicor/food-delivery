@@ -3,6 +3,7 @@ import DropdownAlert from 'react-native-dropdownalert';
 import NetworkState from 'react-native-network-state'
 import codePush from "react-native-code-push";
 import { Provider as PaperProvider } from 'react-native-paper';
+import SplashScreen from 'react-native-splash-screen'
 
 import { Theme } from './App/Constants/theme.constants';
 
@@ -11,6 +12,10 @@ import RootNavigator from './App/Navigation/index.navigation';
 import NotifyService from './App/Services/notify.service';
 
 class App extends Component {
+  componentDidMount() {
+    SplashScreen.hide();
+  }
+
   render() {
     return (
       <PaperProvider theme={Theme} >

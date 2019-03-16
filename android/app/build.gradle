@@ -140,6 +140,7 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-splash-screen')
     implementation project(':react-native-code-push')
     implementation 'com.android.support:multidex:1.0.0'
     implementation project(':appcenter-push')
