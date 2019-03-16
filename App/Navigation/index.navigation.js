@@ -11,6 +11,7 @@ import { Colors } from '../Constants/theme.constants';
 import HomeScreen from '../Screen/Home-Screen/home.screen';
 import ResolveLocaitonScreen from '../Screen/Resolve-Location-Screen/resolveLocation.screen';
 import App from '../Screen/Resolve-App-Screen/resolveApp.screen';
+import OnBoarding from '../Screen/OnBoarding-Screen/onBoarding.screen';
 
 const TabNavigator = createBottomTabNavigator(
     {
@@ -48,7 +49,18 @@ const RootNavigator = createStackNavigator(
                 header: null,
             }
         },
-        Tabs: { screen: TabNavigator }
+        OnBoarding: {
+            screen: OnBoarding,
+            navigationOptions: {
+                header: null
+            }
+        },
+        Tabs: {
+            screen: TabNavigator,
+            navigationOptions: {
+                header: null
+            }
+        }
     },
     {
         initialRouteName: 'App'

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { ScaledSheet } from 'react-native-size-matters';
-import { Bubbles, DoubleBounce, Bars, Pulse } from 'react-native-loader';
+import { Bubbles } from 'react-native-loader';
 
 import { View } from '../../UIComponents';
 
 import { Colors } from '../../Constants/theme.constants';
+import { IsFirstTimeAppUser } from '../../Logic/App.logic';
 
 class ResolveAppScreen extends Component {
     constructor(props) {
@@ -15,13 +16,25 @@ class ResolveAppScreen extends Component {
     }
 
     componentDidMount() {
+        setTimeout(() => {
+            this.handleFirstTime();
+        }, 1000);
+    }
 
+    handleFirstTime = async () => {
+        const isFirstTime = await IsFirstTimeAppUser();
+        if (isFirstTime.success) {
+            this.props.navigation.navigate('OnBoarding');
+            return;
+        }
+
+        this.props.navigation.navigate('Tabs');
     }
 
     render() {
         return (
             <View style={styles.container}>
-                <Bars size={10} color={Colors.OnPrimary} />
+                <Bubbles size={10} color={Colors.OnPrimary} />
             </View>
         )
     }
