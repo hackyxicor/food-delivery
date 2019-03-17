@@ -14,16 +14,18 @@ import App from '../Screen/Resolve-App-Screen/resolveApp.screen';
 import OnBoardingScreen from '../Screen/OnBoarding-Screen/onBoarding.screen';
 import LoginScreen from '../Screen/Login-Screen/login.screen';
 import VerifyMobileNumberScreen from '../Screen/Verify-Mobile-Number-Screen/verifyMobileNumber.screen';
+import AcctountScreen from '../Screen/Account-Screen/account.screen';
+import OrdersScreen from '../Screen/Orders-Screen/orders.screen';
 
 const TabNavigator = createBottomTabNavigator(
     {
         Order: { screen: HomeScreen },
         Search: { screen: ResolveLocaitonScreen },
-        Orders: { screen: HomeScreen },
-        Account: { screen: HomeScreen },
+        Orders: { screen: OrdersScreen },
+        Account: { screen: AcctountScreen },
     },
     {
-        initialRouteName: 'Order',
+        initialRouteName: 'Account',
         order: ['Order', 'Search', 'Orders', 'Account'],
         backBehavior: 'initialRoute',
         lazy: true,
@@ -85,7 +87,7 @@ const RootNavigator = createStackNavigator(
         }
     },
     {
-        initialRouteName: 'App'
+        initialRouteName: 'Tabs'
     }
 )
 
