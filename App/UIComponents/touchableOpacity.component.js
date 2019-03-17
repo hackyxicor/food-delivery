@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
-import { TouchableOpacity } from 'react-native';
+import { TouchableRipple } from 'react-native-paper';
 
 class UITouchableOpacity extends Component {
     render() {
-        return <TouchableOpacity {...this.props} />
+        return (
+            <TouchableRipple
+                rippleColor="rgba(0, 0, 0, .32)"
+                {...this.props}
+            />
+        )
     }
 }
 

@@ -25,9 +25,19 @@ class OnBoardingScreen extends Component {
                     pages={[
                         {
                             backgroundColor: '#fff',
-                            title: 'Onboarding',
-                            subtitle: 'Done with React Native Onboarding Swiper',
+                            title: 'Order',
+                            subtitle: 'Oder all you want from your favorite stores',
                         },
+                        {
+                            backgroundColor: '#fff',
+                            title: 'Pick Delivery Time',
+                            subtitle: 'Receive your order in less than 1 hour.\n Or pick a specific delivery time',
+                        },
+                        {
+                            backgroundColor: '#fff',
+                            title: 'Get Your Order',
+                            subtitle: 'Real-time tracking will keep you posted about order progress.',
+                        }
                     ]}
                     onSkip={() => this.done()}
                     onDone={() => this.done()}

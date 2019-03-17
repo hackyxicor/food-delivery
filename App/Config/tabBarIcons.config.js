@@ -1,5 +1,5 @@
 module.exports = {
-    Home: 'home',
+    Order: 'home',
     Search: 'magnify',
     Orders: 'basket',
     Account: 'account',

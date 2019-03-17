@@ -3,7 +3,13 @@ import { FlatList } from 'react-native';
 
 class UIFlatList extends Component {
     render() {
-        return <FlatList {...this.props} />
+        return (
+            <FlatList
+                showsHorizontalScrollIndicator={false}
+                showsHorizontalScrollIndicator={false}
+                {...this.props}
+            />
+        )
     }
 }
 

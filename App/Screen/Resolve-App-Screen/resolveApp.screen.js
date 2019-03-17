@@ -28,7 +28,7 @@ class ResolveAppScreen extends Component {
             return;
         }
 
-        this.props.navigation.navigate('Tabs');
+        this.props.navigation.navigate('Login');
     }
 
     render() {

@@ -14,6 +14,7 @@ module.exports = {
         Devider: '#BDBDBD',
         Surface: '#FFFFFF',
         OnPrimary: '#FFFFFF',
+        DarkBackground: '#f2f2f2',
     },
     Theme: {
         ...DefaultTheme,

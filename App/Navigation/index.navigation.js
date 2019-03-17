@@ -11,18 +11,20 @@ import { Colors } from '../Constants/theme.constants';
 import HomeScreen from '../Screen/Home-Screen/home.screen';
 import ResolveLocaitonScreen from '../Screen/Resolve-Location-Screen/resolveLocation.screen';
 import App from '../Screen/Resolve-App-Screen/resolveApp.screen';
-import OnBoarding from '../Screen/OnBoarding-Screen/onBoarding.screen';
+import OnBoardingScreen from '../Screen/OnBoarding-Screen/onBoarding.screen';
+import LoginScreen from '../Screen/Login-Screen/login.screen';
+import VerifyMobileNumberScreen from '../Screen/Verify-Mobile-Number-Screen/verifyMobileNumber.screen';
 
 const TabNavigator = createBottomTabNavigator(
     {
-        Home: { screen: HomeScreen },
+        Order: { screen: HomeScreen },
         Search: { screen: ResolveLocaitonScreen },
         Orders: { screen: HomeScreen },
         Account: { screen: HomeScreen },
     },
     {
-        initialRouteName: 'Home',
-        order: ['Home', 'Search', 'Orders', 'Account'],
+        initialRouteName: 'Order',
+        order: ['Order', 'Search', 'Orders', 'Account'],
         backBehavior: 'initialRoute',
         lazy: true,
         defaultNavigationOptions: ({ navigation }) => ({
@@ -50,9 +52,29 @@ const RootNavigator = createStackNavigator(
             }
         },
         OnBoarding: {
-            screen: OnBoarding,
+            screen: OnBoardingScreen,
             navigationOptions: {
                 header: null
+            }
+        },
+        Login: {
+            screen: LoginScreen,
+            navigationOptions: {
+                headerStyle: {
+                    backgroundColor: Colors.Surface,
+                    zIndex: 0,
+                    elevation: 0
+                },
+            }
+        },
+        VerifyMobileNumber: {
+            screen: VerifyMobileNumberScreen,
+            navigationOptions: {
+                headerStyle: {
+                    backgroundColor: Colors.Surface,
+                    zIndex: 0,
+                    elevation: 0
+                },
             }
         },
         Tabs: {
@@ -63,7 +85,7 @@ const RootNavigator = createStackNavigator(
         }
     },
     {
-        initialRouteName: 'App'
+        initialRouteName: 'Tabs'
     }
 )
 
