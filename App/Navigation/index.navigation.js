@@ -85,7 +85,7 @@ const RootNavigator = createStackNavigator(
         }
     },
     {
-        initialRouteName: 'Tabs'
+        initialRouteName: 'App'
     }
 )
 

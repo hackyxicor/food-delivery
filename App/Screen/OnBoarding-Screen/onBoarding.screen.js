@@ -15,7 +15,7 @@ class OnBoardingScreen extends Component {
     }
 
     done = () => {
-        this.props.navigation.navigate('Tabs');
+        this.props.navigation.navigate('Login');
     }
 
     render() {

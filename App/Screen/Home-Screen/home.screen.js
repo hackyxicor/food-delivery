@@ -12,7 +12,7 @@ class HomeScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            loading: false,
+            loading: true,
             offers: [
                 {
                     id: 1,
