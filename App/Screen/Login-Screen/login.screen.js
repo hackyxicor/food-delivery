@@ -6,6 +6,7 @@ import JomboText from '../../Components/JobmoText/jobmoText.component';
 import BottomStickButton from '../../Components/BottomStickButton/bottomStickButton.component';
 import { Colors } from '../../Constants/theme.constants';
 
+
 class LoginScreen extends Component {
     constructor(props) {
         super(props);

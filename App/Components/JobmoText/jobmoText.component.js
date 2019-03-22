@@ -1,15 +1,21 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import { ScaledSheet } from 'react-native-size-matters';
 
 import { View, Text } from '../../UIComponents';
 import { Colors } from '../../Constants/theme.constants';
 
-const JomboText = ({ text, description }) => (
-    <View style={styles.container} >
-        <Text style={styles.text}>{text}</Text>
-        <Text style={styles.description}>{description}</Text>
-    </View>
-)
+
+class JumboText extends PureComponent {
+    render() {
+        const { text, description } = this.props;
+        return (
+            <View style={styles.container} >
+                <Text style={styles.text}>{text}</Text>
+                <Text style={styles.description}>{description}</Text>
+            </View>
+        )
+    }
+}
 
 const styles = ScaledSheet.create({
     container: {
@@ -29,4 +35,4 @@ const styles = ScaledSheet.create({
     }
 })
 
-export default JomboText;
+export default JumboText;

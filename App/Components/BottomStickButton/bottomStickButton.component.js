@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import { Text, TouchableRipple } from 'react-native-paper';
+import * as Animatable from 'react-native-animatable';
+
 import { ScaledSheet } from 'react-native-size-matters';
 import { Colors } from '../../Constants/theme.constants';
+
+const AnimatedTouchableRipple = Animatable.createAnimatableComponent(TouchableRipple);
 
 class BottomStickButton extends Component {
     render() {
         return (
-            <TouchableRipple
+            <AnimatedTouchableRipple
+                animation="fadeInUpBig"
                 rippleColor="rgba(0, 0, 0, .32)"
                 style={styles.wrapper}
                 {...this.props}
@@ -16,7 +21,7 @@ class BottomStickButton extends Component {
                 >
                     {this.props.children}
                 </Text>
-            </TouchableRipple>
+            </AnimatedTouchableRipple>
         )
     }
 }

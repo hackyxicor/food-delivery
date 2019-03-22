@@ -15,6 +15,9 @@ module.exports = {
         Surface: '#FFFFFF',
         OnPrimary: '#FFFFFF',
         DarkBackground: '#f2f2f2',
+        Success: '#4BB543',
+        Warning: '#FFCC00',
+        Error: '#CC3300',
     },
     Theme: {
         ...DefaultTheme,

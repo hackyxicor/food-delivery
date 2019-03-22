@@ -7,7 +7,9 @@ class UITouchableOpacity extends Component {
             <TouchableRipple
                 rippleColor="rgba(0, 0, 0, .32)"
                 {...this.props}
-            />
+            >
+                {this.props.children}
+            </TouchableRipple>
         )
     }
 }
