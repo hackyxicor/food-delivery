@@ -46,13 +46,19 @@ class AcctountScreen extends Component {
     )
 
     render() {
+        const navigation = this.props.navigation;
+
         return (
             <View style={styles.container} >
                 <this.RenderUserDetailsSection />
                 {
-                    AccountScreenOptionsConfig.map((menuItemConfig) => {
+                    AccountScreenOptionsConfig.map((menuItemConfig, key) => {
                         return (
-                            <MenuItem menuItemConfig={menuItemConfig} />
+                            <MenuItem
+                                key={key}
+                                menuItemConfig={menuItemConfig}
+                                navigation={navigation}
+                            />
                         )
                     })
                 }

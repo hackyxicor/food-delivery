@@ -17,6 +17,7 @@ import VerifyMobileNumberScreen from '../Screen/Verify-Mobile-Number-Screen/veri
 import AcctountScreen from '../Screen/Account-Screen/account.screen';
 import OrdersScreen from '../Screen/Orders-Screen/orders.screen';
 import SetupAccountScreen from '../Screen/Setup-Account-Screen/setupAccount.screen';
+import SavedAddressesScreen from '../Screen/Saved-Addresses-Screen/savedAddresses.screen';
 
 const TabNavigator = createBottomTabNavigator(
     {
@@ -83,6 +84,17 @@ const RootNavigator = createStackNavigator(
         SetupAccount: {
             screen: SetupAccountScreen,
             navigationOptions: {
+                headerStyle: {
+                    backgroundColor: Colors.Surface,
+                    zIndex: 0,
+                    elevation: 0
+                },
+            }
+        },
+        SavedAddresses: {
+            screen: SavedAddressesScreen,
+            navigationOptions: {
+                title: 'Saved Addresses',
                 headerStyle: {
                     backgroundColor: Colors.Surface,
                     zIndex: 0,

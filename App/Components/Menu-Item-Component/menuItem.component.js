@@ -5,10 +5,10 @@ import MDI from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import { Colors } from '../../Constants/theme.constants';
 
-const MenuItem = ({ menuItemConfig }) => (
+const MenuItem = ({ menuItemConfig, navigation }) => (
     <TouchableOpacity
         style={styles.containerWrap}
-        onPress={() => console.log('fff')}
+        onPress={() => navigation.push(menuItemConfig.route)}
     >
         <View
             style={styles.container}

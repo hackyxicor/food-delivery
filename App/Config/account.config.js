@@ -4,7 +4,7 @@ module.exports = [
         active: 1,
         name: 'Saved addresses',
         icon: 'home-map-marker',
-        route: 'SavedAddress'
+        route: 'SavedAddresses'
     },
     {
         id: 1,
