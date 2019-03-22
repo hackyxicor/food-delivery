@@ -16,6 +16,7 @@ import LoginScreen from '../Screen/Login-Screen/login.screen';
 import VerifyMobileNumberScreen from '../Screen/Verify-Mobile-Number-Screen/verifyMobileNumber.screen';
 import AcctountScreen from '../Screen/Account-Screen/account.screen';
 import OrdersScreen from '../Screen/Orders-Screen/orders.screen';
+import SetupAccountScreen from '../Screen/Setup-Account-Screen/setupAccount.screen';
 
 const TabNavigator = createBottomTabNavigator(
     {
@@ -65,12 +66,22 @@ const RootNavigator = createStackNavigator(
                 headerStyle: {
                     backgroundColor: Colors.Surface,
                     zIndex: 0,
-                    elevation: 0
+                    elevation: 0,
                 },
             }
         },
         VerifyMobileNumber: {
             screen: VerifyMobileNumberScreen,
+            navigationOptions: {
+                headerStyle: {
+                    backgroundColor: Colors.Surface,
+                    zIndex: 0,
+                    elevation: 0
+                },
+            }
+        },
+        SetupAccount: {
+            screen: SetupAccountScreen,
             navigationOptions: {
                 headerStyle: {
                     backgroundColor: Colors.Surface,
@@ -87,7 +98,7 @@ const RootNavigator = createStackNavigator(
         }
     },
     {
-        initialRouteName: 'Tabs'
+        initialRouteName: 'App'
     }
 )
 

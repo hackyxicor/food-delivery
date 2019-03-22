@@ -22,6 +22,7 @@ class AcctountScreen extends Component {
                     <Text style={styles.secondaryText} >9731702355</Text>
                     <Text style={styles.secondaryText} >hkxicor@gmail.com</Text>
                 </View>
+                <View />
             </View>
         );
     }
@@ -44,6 +45,10 @@ const styles = ScaledSheet.create({
         fontWeight: '300',
         color: Colors.SecondaryText,
         marginRight: 10
+    },
+    divider: {
+        height: 1,
+        
     }
 })
 

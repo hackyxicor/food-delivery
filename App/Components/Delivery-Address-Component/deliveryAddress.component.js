@@ -7,7 +7,7 @@ import { Colors } from '../../Constants/theme.constants';
 const DeliveryAddressComponent = ({ address }) => (
     <React.Fragment>
         <View style={{ flexDirection: 'row', padding: 1, alignItems: 'center' }} >
-            <MDI name="map-marker" size={16} color={Colors.PrimaryText} />
+            <MDI name="map-marker" size={14} color={Colors.PrimaryText} />
             <Text style={styles.smallText} >YOUR LOCATION</Text>
         </View>
         <View style={{ flexDirection: 'row', padding: 1 }} >
@@ -22,12 +22,13 @@ const DeliveryAddressComponent = ({ address }) => (
 
 const styles = ScaledSheet.create({
     smallText: {
-        fontSize: 12,
+        fontSize: 10,
         color: Colors.PrimaryText,
-        fontWeight: '300'
+        fontWeight: '300',
+        marginLeft: 2,
     },
     bigText: {
-        fontSize: 18,
+        fontSize: 16,
         color: Colors.PrimaryText,
         fontWeight: '400'
     },

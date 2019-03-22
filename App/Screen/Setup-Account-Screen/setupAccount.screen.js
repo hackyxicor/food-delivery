@@ -1,52 +1,56 @@
 import React, { Component } from 'react';
 import { ScaledSheet } from 'react-native-size-matters';
-import { StackActions, NavigationActions } from 'react-navigation';
 
-import { View, TextInput } from '../../UIComponents';
+import { View, TextInput, ScrollView } from '../../UIComponents';
 import JomboText from '../../Components/JobmoText/jobmoText.component';
 import BottomStickButton from '../../Components/BottomStickButton/bottomStickButton.component';
 import { Colors } from '../../Constants/theme.constants';
 
-class VerifyMobileNumberScreen extends Component {
+class SetupAccountScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            otp: '',
+            name: '',
+            email: '',
         }
     }
 
     render() {
-        const { otp } = this.state;
+        const { name, email } = this.state;
 
         return (
             <React.Fragment>
-                <View style={styles.container} >
+                <ScrollView
+                    style={styles.container}
+                    contentContainerStyle={styles.contentContainer}
+                >
                     <View style={styles.jumboTextWrapper} >
                         <JomboText
-                            text={'Verify mobile number'}
-                            description={`Enter the OTP sent to ${this.props.mobile}`}
+                            text={'Setup Account'}
+                            description={`Your invoice will be sent to this account`}
                         />
                     </View>
                     <View style={styles.positionFix2} >
                         <TextInput
-                            label='Enter OTP'
-                            value={otp}
-                            placeholder="Enter OTP"
-                            onChangeText={otp => this.setState({ otp })}
-                            keyboardType="numeric"
+                            label='Name'
+                            value={name}
+                            placeholder="Enter full name"
+                            onChangeText={name => this.setState({ name })}
                         />
                     </View>
-                </View>
+                    <View style={styles.positionFix2} >
+                        <TextInput
+                            label='Email'
+                            value={email}
+                            placeholder="Enter email address"
+                            onChangeText={email => this.setState({ email })}
+                        />
+                    </View>
+                </ScrollView>
                 <BottomStickButton
-                    onPress={() => {
-                        const resetAction = StackActions.reset({
-                            index: 0,
-                            actions: [NavigationActions.navigate({ routeName: 'SetupAccount' })],
-                        });
-                        this.props.navigation.dispatch(resetAction);
-                    }}
+                    onPress={() => this.props.navigation.push('Tabs')}
                 >
-                    VERIFY AND CONTINUE
+                    CONTINUE
                 </BottomStickButton>
             </React.Fragment>
         )
@@ -58,6 +62,8 @@ const styles = ScaledSheet.create({
         flex: 1,
         backgroundColor: '#fff',
         padding: 15,
+    },
+    contentContainer: {
         alignItems: 'center'
     },
     button: {
@@ -73,7 +79,7 @@ const styles = ScaledSheet.create({
         marginTop: 25,
     },
     positionFix2: {
-        height: '100@ms',
+        height: '70@ms',
         alignItems: 'center',
         justifyContent: 'flex-end'
     },
@@ -83,6 +89,6 @@ const styles = ScaledSheet.create({
     }
 });
 
-export default VerifyMobileNumberScreen;
+export default SetupAccountScreen;
 
 

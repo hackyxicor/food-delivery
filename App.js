@@ -4,6 +4,7 @@ import NetworkState from 'react-native-network-state'
 import codePush from "react-native-code-push";
 import { Provider as PaperProvider } from 'react-native-paper';
 import SplashScreen from 'react-native-splash-screen'
+import GlobalFont from 'react-native-global-font'
 
 import { Theme } from './App/Constants/theme.constants';
 
@@ -14,6 +15,7 @@ import NotifyService from './App/Services/notify.service';
 class App extends Component {
   componentDidMount() {
     SplashScreen.hide();
+    GlobalFont.applyGlobal('Muli')
   }
 
   render() {

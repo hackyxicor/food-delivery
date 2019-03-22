@@ -24,11 +24,11 @@ class ResolveAppScreen extends Component {
     handleFirstTime = async () => {
         const isFirstTime = await IsFirstTimeAppUser();
         if (isFirstTime.success) {
-            this.props.navigation.navigate('OnBoarding');
+            this.props.navigation.replace('OnBoarding');
             return;
         }
 
-        this.props.navigation.navigate('Login');
+        this.props.navigation.replace('Login');
     }
 
     render() {
