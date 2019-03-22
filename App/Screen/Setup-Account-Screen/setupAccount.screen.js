@@ -48,7 +48,7 @@ class SetupAccountScreen extends Component {
                     </View>
                 </ScrollView>
                 <BottomStickButton
-                    onPress={() => this.props.navigation.push('Tabs')}
+                    onPress={() => this.props.navigation.push('ResolveLocaiton')}
                 >
                     CONTINUE
                 </BottomStickButton>

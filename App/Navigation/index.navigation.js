@@ -10,7 +10,7 @@ import { Colors } from '../Constants/theme.constants';
 //Import Screens
 import HomeScreen from '../Screen/Home-Screen/home.screen';
 import ResolveLocaitonScreen from '../Screen/Resolve-Location-Screen/resolveLocation.screen';
-import App from '../Screen/Resolve-App-Screen/resolveApp.screen';
+import ResolveApp from '../Screen/Resolve-App-Screen/resolveApp.screen';
 import OnBoardingScreen from '../Screen/OnBoarding-Screen/onBoarding.screen';
 import LoginScreen from '../Screen/Login-Screen/login.screen';
 import VerifyMobileNumberScreen from '../Screen/Verify-Mobile-Number-Screen/verifyMobileNumber.screen';
@@ -27,7 +27,7 @@ const TabNavigator = createBottomTabNavigator(
         Account: { screen: AcctountScreen },
     },
     {
-        initialRouteName: 'Account',
+        initialRouteName: 'Order',
         order: ['Order', 'Search', 'Orders', 'Account'],
         backBehavior: 'initialRoute',
         lazy: true,
@@ -35,7 +35,6 @@ const TabNavigator = createBottomTabNavigator(
             tabBarIcon: ({ focused, horizontal, tintColor }) => {
                 const { routeName } = navigation.state;
 
-                // You can return any component that you like here!
                 return <MDI name={GetTabIcon(routeName)} size={25} color={tintColor} />;
             },
         }),
@@ -49,8 +48,8 @@ const TabNavigator = createBottomTabNavigator(
 
 const RootNavigator = createStackNavigator(
     {
-        App: {
-            screen: App,
+        ResolveApp: {
+            screen: ResolveApp,
             navigationOptions: {
                 header: null,
             }
@@ -102,6 +101,12 @@ const RootNavigator = createStackNavigator(
                 },
             }
         },
+        ResolveLocaiton: {
+            screen: ResolveLocaitonScreen,
+            navigationOptions: {
+                header: null
+            }
+        },
         Tabs: {
             screen: TabNavigator,
             navigationOptions: {
@@ -110,7 +115,7 @@ const RootNavigator = createStackNavigator(
         }
     },
     {
-        initialRouteName: 'Tabs'
+        initialRouteName: 'ResolveApp'
     }
 )
 
