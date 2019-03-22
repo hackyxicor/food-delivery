@@ -69,7 +69,6 @@ class ResolveLocaitonScreen extends Component {
             serviceStatus: result,
             layout: this.locationService.getActionFromStatusCode(result)
         });
-        this.animation.stop();
     }
 
 
@@ -78,13 +77,15 @@ class ResolveLocaitonScreen extends Component {
 
         return (
             <View style={styles.container}>
-                <LottieView
-                    style={styles.lottieView}
-                    ref={animation => {
-                        this.animation = animation;
-                    }}
-                    source={require('../../Assets/Lottie/location-pin.json')}
-                />
+                <View style={styles.lottieContainer} >
+                    <LottieView
+                        style={styles.lottieView}
+                        ref={animation => {
+                            this.animation = animation;
+                        }}
+                        source={require('../../Assets/Lottie/location-pin.json')}
+                    />
+                </View>
                 {
                     resolving ?
                         <View
@@ -94,16 +95,16 @@ class ResolveLocaitonScreen extends Component {
                                 style={styles.messageText}
                             >
                                 Getting your location
-                    </Text>
+                            </Text>
                         </View> : null
                 }
                 {
                     layout ?
                         <React.Fragment>
-                            <View style={{ marginTop: 20 }} >
+                            <View style={{ marginTop: 20, textAlign: 'center' }} >
                                 <Text style={styles.title} >{layout.title}</Text>
                             </View>
-                            <View style={{ marginTop: 30 }} >
+                            <View style={{ marginTop: 30, textAlign: 'center' }} >
                                 <Text style={styles.message} >{layout.description}</Text>
                             </View>
                             <BottomStickButton
@@ -126,6 +127,10 @@ const styles = ScaledSheet.create({
     },
     lottieView: {
     },
+    lottieContainer: {
+        width: 200,
+        height: 200
+    },
     messageText: {
         fontSize: 24,
         color: Colors.PrimaryText
@@ -138,8 +143,9 @@ const styles = ScaledSheet.create({
         color: Colors.PrimaryText
     },
     message: {
-        fontSize: 20,
-        color: Colors.SecondaryText
+        fontSize: 18,
+        color: Colors.SecondaryText,
+        textAlign: 'center'
     }
 })
 
