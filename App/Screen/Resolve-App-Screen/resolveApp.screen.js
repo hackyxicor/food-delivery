@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { ScaledSheet } from 'react-native-size-matters';
 import { Bubbles } from 'react-native-loader';
+import LottieView from 'lottie-react-native';
 
 import { View } from '../../UIComponents';
 
@@ -16,9 +17,10 @@ class ResolveAppScreen extends Component {
     }
 
     componentDidMount() {
+        this.animation.play();
         setTimeout(() => {
             this.handleFirstTime();
-        }, 1000);
+        }, 2000);
     }
 
     handleFirstTime = async () => {
@@ -34,7 +36,13 @@ class ResolveAppScreen extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Bubbles size={10} color={Colors.OnPrimary} />
+                <LottieView
+                    style={styles.lottieView}
+                    ref={animation => {
+                        this.animation = animation;
+                    }}
+                    source={require('../../Assets/Lottie/loading.json')}
+                />
             </View>
         )
     }
@@ -46,6 +54,10 @@ const styles = ScaledSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: Colors.Primary
+    },
+    lottieView: {
+        width: 150,
+        height: 150
     },
 })
 
