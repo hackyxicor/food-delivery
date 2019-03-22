@@ -7,10 +7,9 @@ const OffersHorizontalSlider = ({ offers }) => (
         style={styles.list}
         contentContainerStyle={styles.container}
         data={offers}
-        renderItem={({ item, key }) => {
+        renderItem={({ item }) => {
             return (
                 <TouchableOpacity
-                    key={key}
                     style={styles.imageWrapper}
                     onPress={() => { }}
                 >
@@ -19,6 +18,7 @@ const OffersHorizontalSlider = ({ offers }) => (
             )
         }}
         horizontal
+        keyExtractor={(item) => String(item.id)}
     />
 )
 

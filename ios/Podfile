@@ -20,6 +20,7 @@ target 'food_delivery' do
 
   pod 'react-native-splash-screen', :path => '../node_modules/react-native-splash-screen'
 
+
   target 'food_deliveryTests' do
     inherit! :search_paths
     # Pods for testing

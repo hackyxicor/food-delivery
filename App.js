@@ -1,16 +1,20 @@
 import React, { Component, Fragment } from 'react';
+import { Text } from 'react-native';
 import DropdownAlert from 'react-native-dropdownalert';
 import NetworkState from 'react-native-network-state'
 import codePush from "react-native-code-push";
 import { Provider as PaperProvider } from 'react-native-paper';
 import SplashScreen from 'react-native-splash-screen'
-import GlobalFont from 'react-native-global-font'
+import GlobalFont from 'react-native-global-font';
+import RBSheet from "react-native-raw-bottom-sheet";
 
 import { Theme } from './App/Constants/theme.constants';
 
 //import root navigator
 import RootNavigator from './App/Navigation/index.navigation';
 import NotifyService from './App/Services/notify.service';
+import BottomSheetService from './App/Services/bottomSheet.service';
+import FilterComponent from './App/Components/Filter-Component/filter.component';
 
 class App extends Component {
   componentDidMount() {
@@ -28,7 +32,20 @@ class App extends Component {
           onConnected={() => console.log('connected')}
           onDisconnected={() => { }}
         />
-      </PaperProvider>
+        <RBSheet
+          ref={ref => BottomSheetService.register('FILTER', ref)}
+          height={350}
+          duration={250}
+          customStyles={{
+            container: {
+              justifyContent: 'center',
+              alignItems: 'center'
+            }
+          }}
+        >
+          <FilterComponent />
+        </RBSheet>
+      </PaperProvider >
     );
   }
 }

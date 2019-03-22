@@ -1,18 +1,22 @@
 import React, { Component } from 'react';
 import { ScaledSheet } from 'react-native-size-matters';
-import { View, Text, Image } from '../../UIComponents';
+import { View, Text, Image, ScrollView } from '../../UIComponents';
 import { Colors } from '../../Constants/theme.constants';
+import MDI from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import HomeScreenPlaceholder from './home.loader';
 import DeliveryAddressComponent from '../../Components/Delivery-Address-Component/deliveryAddress.component';
 import OffersHorizontalSlider from '../../Components/Offers-Horizontal-Slider/offersHorizontalSlider.component';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import BottomSheetService from '../../Services/bottomSheet.service';
+import RestaurantCard from '../../Components/Restaurant-Card/restaurantCard.component';
 
 
 class HomeScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            loading: true,
+            loading: false,
             offers: [
                 {
                     id: 1,
@@ -34,6 +38,23 @@ class HomeScreen extends Component {
                     id: 5,
                     source: { uri: 'https://static.vecteezy.com/system/resources/previews/000/330/970/large_2x/vector-best-offer-geometric-banner.jpg' }
                 }
+            ],
+            restaurants: [
+                {
+                    id: 1,
+                },
+                {
+                    id: 2,
+                },
+                {
+                    id: 3,
+                },
+                {
+                    id: 4,
+                },
+                {
+                    id: 5,
+                }
             ]
         }
     }
@@ -44,8 +65,27 @@ class HomeScreen extends Component {
         }, 4000)
     }
 
+    RenderFilterSection = () => {
+        return (
+            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', height: 40, paddingLeft: 10, paddingRight: 10 }} >
+                <Text>515 Restaurants</Text>
+                <TouchableOpacity
+                    style={{ flexDirection: 'row', padding: 2, alignItems: 'center', justifyContent: 'center' }}
+                    onPress={() => BottomSheetService.open('FILTER')}
+                >
+                    <MDI
+                        name={'tune-vertical'}
+                        size={22}
+                        color={Colors.PrimaryText}
+                    />
+                    <Text style={{ marginLeft: 5 }} >SORT/FILTER</Text>
+                </TouchableOpacity>
+            </View>
+        )
+    }
+
     render() {
-        const { loading, offers } = this.state;
+        const { loading, offers, restaurants } = this.state;
 
         if (loading) {
             return (
@@ -60,7 +100,18 @@ class HomeScreen extends Component {
                 <View style={styles.headerWrapper} >
                     <DeliveryAddressComponent />
                 </View>
-                <OffersHorizontalSlider offers={offers} />
+                <ScrollView
+                    style={styles.scrollWrapper}
+                    contentContainerStyle={{ paddingBottom: 100 }}
+                >
+                    <OffersHorizontalSlider offers={offers} />
+                    <this.RenderFilterSection />
+                    {
+                        restaurants.map((item) => (
+                            <RestaurantCard key={String(item.id)} />
+                        ))
+                    }
+                </ScrollView>
             </View>
         )
     }
@@ -71,13 +122,13 @@ const styles = ScaledSheet.create({
         width: 300,
         height: 300,
     },
+    scrollWrapper: {
+
+    },
     headerWrapper: {
         height: 70,
-        padding: 7,
         borderBottomWidth: 1,
         borderColor: Colors.Devider,
-    },
-    container: {
     },
     smallText: {
         fontSize: 12,

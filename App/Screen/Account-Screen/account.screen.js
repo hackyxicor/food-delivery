@@ -90,8 +90,8 @@ const styles = ScaledSheet.create({
     row: {
         flexDirection: 'row',
         height: 30,
-        alignItems: 'flex-start',
-        justifyContent: 'center'
+        alignItems: 'center',
+        justifyContent: 'flex-start'
     },
 })
 

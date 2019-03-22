@@ -8,21 +8,26 @@ import { GetTabIcon } from '../Utils/navigation.utils';
 import { Colors } from '../Constants/theme.constants';
 
 //Import Screens
+
+//Tabs
 import HomeScreen from '../Screen/Home-Screen/home.screen';
+import SearchScreen from '../Screen/Search-Screen/search.screen';
+import OrdersScreen from '../Screen/Orders-Screen/orders.screen';
+import AcctountScreen from '../Screen/Account-Screen/account.screen';
+
+//Stack
 import ResolveLocaitonScreen from '../Screen/Resolve-Location-Screen/resolveLocation.screen';
 import ResolveApp from '../Screen/Resolve-App-Screen/resolveApp.screen';
 import OnBoardingScreen from '../Screen/OnBoarding-Screen/onBoarding.screen';
 import LoginScreen from '../Screen/Login-Screen/login.screen';
 import VerifyMobileNumberScreen from '../Screen/Verify-Mobile-Number-Screen/verifyMobileNumber.screen';
-import AcctountScreen from '../Screen/Account-Screen/account.screen';
-import OrdersScreen from '../Screen/Orders-Screen/orders.screen';
 import SetupAccountScreen from '../Screen/Setup-Account-Screen/setupAccount.screen';
 import SavedAddressesScreen from '../Screen/Saved-Addresses-Screen/savedAddresses.screen';
 
 const TabNavigator = createBottomTabNavigator(
     {
         Order: { screen: HomeScreen },
-        Search: { screen: ResolveLocaitonScreen },
+        Search: { screen: SearchScreen },
         Orders: { screen: OrdersScreen },
         Account: { screen: AcctountScreen },
     },
