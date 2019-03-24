@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Text, TouchableRipple } from 'react-native-paper';
 import * as Animatable from 'react-native-animatable';
 
-import { ScaledSheet } from 'react-native-size-matters';
 import { Colors } from '../../Constants/theme.constants';
+import { Stylify } from '../../Utils/dimensionHandler.utils';
 
 const AnimatedTouchableRipple = Animatable.createAnimatableComponent(TouchableRipple);
 
@@ -13,11 +13,11 @@ class BottomStickButton extends Component {
             <AnimatedTouchableRipple
                 animation="fadeInUpBig"
                 rippleColor="rgba(0, 0, 0, .32)"
-                style={styles.wrapper}
+                style={Stylify({ ...styles.wrapper })}
                 {...this.props}
             >
                 <Text
-                    style={styles.text}
+                    style={Stylify({ ...styles.text })}
                 >
                     {this.props.children}
                 </Text>
@@ -26,10 +26,10 @@ class BottomStickButton extends Component {
     }
 }
 
-const styles = ScaledSheet.create({
+const styles = {
     wrapper: {
-        width: '380@ms',
-        height: 60,
+        width: 360,
+        height: 50,
         backgroundColor: Colors.Primary,
         position: 'absolute',
         bottom: 0,
@@ -41,8 +41,9 @@ const styles = ScaledSheet.create({
     text: {
         color: Colors.OnPrimary,
         fontWeight: '500',
-        fontSize: '16@ms0.3'
+        fontSize: 16,
+        textAlign: 'center'
     }
-})
+}
 
 export default BottomStickButton;

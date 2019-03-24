@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { ScaledSheet } from 'react-native-size-matters';
 import { View, Text, Image, ScrollView } from '../../UIComponents';
 import { Colors } from '../../Constants/theme.constants';
 import MDI from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -123,7 +122,7 @@ class HomeScreen extends Component {
     }
 }
 
-const styles = ScaledSheet.create({
+const styles = {
     image: {
         width: 300,
         height: 300,
@@ -158,6 +157,6 @@ const styles = ScaledSheet.create({
         bottom: 70,
         backgroundColor: Colors.Primary
     },
-})
+};
 
 export default HomeScreen;

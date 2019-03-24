@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { ScaledSheet } from 'react-native-size-matters';
 import { Bubbles } from 'react-native-loader';
 import LottieView from 'lottie-react-native';
 
@@ -30,7 +29,7 @@ class ResolveAppScreen extends Component {
             return;
         }
 
-        this.props.navigation.replace('Login');
+        this.props.navigation.replace('OnBoarding');
     }
 
     render() {
@@ -48,7 +47,7 @@ class ResolveAppScreen extends Component {
     }
 }
 
-const styles = ScaledSheet.create({
+const styles = {
     container: {
         flex: 1,
         alignItems: 'center',
@@ -59,6 +58,6 @@ const styles = ScaledSheet.create({
         width: 150,
         height: 150
     },
-})
+};
 
 export default ResolveAppScreen;

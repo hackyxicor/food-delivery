@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { ScaledSheet } from 'react-native-size-matters';
 import { View, Text } from '../../UIComponents';
 import LottieView from 'lottie-react-native';
 import * as Animatable from 'react-native-animatable';
@@ -67,7 +66,7 @@ class AcctountScreen extends Component {
     }
 }
 
-const styles = ScaledSheet.create({
+const styles = {
     container: {
         flex: 1,
     },
@@ -93,6 +92,6 @@ const styles = ScaledSheet.create({
         alignItems: 'center',
         justifyContent: 'flex-start'
     },
-})
+};
 
 export default AcctountScreen;

@@ -1,7 +1,6 @@
 import React from 'react';
 import MDI from 'react-native-vector-icons/MaterialCommunityIcons';
 import { View, Text, TouchableOpacity } from '../../UIComponents';
-import { ScaledSheet } from 'react-native-size-matters';
 import { Colors } from '../../Constants/theme.constants';
 import BottomSheetService from '../../Services/bottomSheet.service';
 
@@ -26,7 +25,7 @@ const DeliveryAddressComponent = ({ address }) => (
 )
 
 
-const styles = ScaledSheet.create({
+const styles = {
     container: {
         padding: 7,
     },
@@ -46,7 +45,7 @@ const styles = ScaledSheet.create({
         color: Colors.SecondaryText,
         fontWeight: '300'
     }
-})
+};
 
 
 export default DeliveryAddressComponent;

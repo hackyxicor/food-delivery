@@ -1,6 +1,5 @@
 import React from 'react';
 import { FlatList, TouchableOpacity, Image, View, Text } from '../../UIComponents';
-import { ScaledSheet } from 'react-native-size-matters';
 import MDI from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import { Colors } from '../../Constants/theme.constants';
@@ -58,7 +57,7 @@ const RestaurantCard = ({ navigation }) => (
 )
 
 
-const styles = ScaledSheet.create({
+const styles = {
     container: {
         flexDirection: 'row',
         padding: 10,
@@ -72,10 +71,10 @@ const styles = ScaledSheet.create({
         fontSize: 14,
     },
     image: {
-        width: '90@ms',
-        height: '90@ms'
+        width: 90,
+        height: 90
     }
-})
+};
 
 
 export default RestaurantCard;

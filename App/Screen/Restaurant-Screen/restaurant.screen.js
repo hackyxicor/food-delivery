@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Dimensions, Platform } from 'react-native';
-import { ScaledSheet } from 'react-native-size-matters';
 import { View, ScrollView, TouchableOpacity, Text, Image } from '../../UIComponents';
 import { FAB, Portal } from 'react-native-paper';
 import MDI from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -8,6 +7,8 @@ import { Colors } from '../../Constants/theme.constants';
 import BottomSheetService from '../../Services/bottomSheet.service';
 import ReactNativeParallaxHeader from 'react-native-parallax-header';
 import { Switch } from 'react-native-paper';
+import CartButtonComponent from '../../Components/Cart-Button-Component/cartButton.component';
+import FoodComponent from '../../Components/FoodComponent/food.component';
 
 
 var { height, width } = Dimensions.get('window');
@@ -83,91 +84,51 @@ class RestaurantScreen extends Component {
         </View>
     )
 
-    FoodCard = () => (
-        <View style={{ flex: 1, alignItems: 'center', height: 200 }} >
-            <Image resizeMode="cover" style={{ width: 180, height: 140 }} source={{ uri: 'https://drop.ndtv.com/albums/COOKS/chinese-vegetarian/rollsspring_640x480.jpg?output-format=webp' }} />
-            <View>
-                <Text style={{ fontSize: 10, textAlign: 'left' }} >Starter</Text>
-                <Text style={{ fontSize: 16, color: Colors.PrimaryText }} >Nachos with cheese</Text>
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }} >
-                    <Text style={{ fontSize: 16 }} >170</Text>
-
-                    <TouchableOpacity
-                        onPress={() => { }}
-                        style={{ width: 70, height: 30, alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: Colors.Success }}
-                    >
-                        <Text style={{ fontSize: 14, color: Colors.Success }} >Add</Text>
-                    </TouchableOpacity>
-                </View>
-            </View>
-        </View>
-    )
-
-    FoodItem = () => (
-        <View style={{ flex: 1, alignItems: 'space-between', flexDirection: 'row', height: 50 }} >
-            <View style={{ flex: 1, alignItems: 'flex-start', justifyContent: 'center' }} >
-                <Text style={{ fontSize: 16, color: Colors.PrimaryText }} >Nachos with cheese</Text>
-                <Text style={{ fontSize: 10, textAlign: 'left' }} >Starter</Text>
-            </View>
-            <View style={{ flex: 0.5, justifyContent: 'center', alignItems: 'center' }} >
-                <Text style={{ fontSize: 16 }} >170</Text>
-            </View>
-            <View style={{ flex: 0.5, justifyContent: 'center', alignItems: 'center' }} >
-                <TouchableOpacity
-                    onPress={() => { }}
-                    style={{ width: 70, height: 30, alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: Colors.Success }}
-                >
-                    <Text style={{ fontSize: 14, color: Colors.Success }} >Add</Text>
-                </TouchableOpacity>
-            </View>
-        </View>
-    )
-
     RecommendedSection = () => (
         <View style={{ flexDirection: 'column' }} >
             <View style={{ flexDirection: 'row', marginBottom: 20 }} >
-                <this.FoodCard />
-                <this.FoodCard />
+                <FoodComponent type="card" />
+                <FoodComponent type="card" />
             </View>
             <View style={{ flexDirection: 'row', marginBottom: 20 }} >
-                <this.FoodCard />
-                <this.FoodCard />
+                <FoodComponent type="card" />
+                <FoodComponent type="card" />
             </View>
             <View style={{ flexDirection: 'row', marginBottom: 20 }} >
-                <this.FoodCard />
-                <this.FoodCard />
+                <FoodComponent type="card" />
+                <FoodComponent type="card" />
             </View>
             <View style={{ flexDirection: 'row', marginBottom: 20 }} >
-                <this.FoodCard />
-                <this.FoodCard />
+                <FoodComponent type="card" />
+                <FoodComponent type="card" />
             </View>
 
             <View style={{ flexDirection: 'row', marginBottom: 20, paddingLeft: 10, paddingRight: 10 }} >
-                <this.FoodItem />
+                <FoodComponent />
             </View>
 
             <View style={{ flexDirection: 'row', marginBottom: 20, paddingLeft: 10, paddingRight: 10 }} >
-                <this.FoodItem />
+                <FoodComponent />
             </View>
 
             <View style={{ flexDirection: 'row', marginBottom: 20, paddingLeft: 10, paddingRight: 10 }} >
-                <this.FoodItem />
+                <FoodComponent />
             </View>
 
             <View style={{ flexDirection: 'row', marginBottom: 20, paddingLeft: 10, paddingRight: 10 }} >
-                <this.FoodItem />
+                <FoodComponent />
             </View>
 
             <View style={{ flexDirection: 'row', marginBottom: 20, paddingLeft: 10, paddingRight: 10 }} >
-                <this.FoodItem />
+                <FoodComponent />
             </View>
 
             <View style={{ flexDirection: 'row', marginBottom: 20, paddingLeft: 10, paddingRight: 10 }} >
-                <this.FoodItem />
+                <FoodComponent />
             </View>
 
             <View style={{ flexDirection: 'row', marginBottom: 20, paddingLeft: 10, paddingRight: 10 }} >
-                <this.FoodItem />
+                <FoodComponent />
             </View>
 
         </View>
@@ -221,24 +182,13 @@ class RestaurantScreen extends Component {
                     onPress={() => BottomSheetService.open('MENU')}
                 />
 
-                <View style={{ height: 50, alignItems: 'center', justifyContent: 'space-between', flexDirection: 'row', padding: 10, position: 'absolute', bottom: 0, left: 0, right: 0, backgroundColor: Colors.Success }} >
-                    <Text style={{ color: Colors.Surface }} >1 Item  |  270</Text>
-
-                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }} >
-                        <MDI
-                            name={'cart'}
-                            size={22}
-                            color={Colors.Surface}
-                        />
-                        <Text style={{ fontSize: 16, color: Colors.Surface }} >VIEW CART</Text>
-                    </View>
-                </View>
+                <CartButtonComponent />
             </View>
         )
     }
 }
 
-const styles = ScaledSheet.create({
+const styles = {
     container: {
         flex: 1
     },
@@ -277,6 +227,6 @@ const styles = ScaledSheet.create({
         alignItems: 'center',
         justifyContent: 'space-around'
     }
-})
+};
 
 export default RestaurantScreen;

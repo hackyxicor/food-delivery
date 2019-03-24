@@ -4,7 +4,6 @@ import {
     Placeholder
 } from 'react-native-loading-placeholder';
 import LinearGradient from 'react-native-linear-gradient';
-import { ScaledSheet } from 'react-native-size-matters';
 
 import { View } from '../../UIComponents';
 
@@ -79,7 +78,7 @@ const HomeScreenPlaceholder = () => {
 
 export default HomeScreenPlaceholder;
 
-const styles = ScaledSheet.create({
+const styles = {
     container: {
         flex: 1,
         alignItems: 'center',
@@ -101,4 +100,4 @@ const styles = ScaledSheet.create({
         flexDirection: 'row',
         width: '100%'
     }
-});
+};

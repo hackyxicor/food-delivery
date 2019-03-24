@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { ScaledSheet } from 'react-native-size-matters';
 import { View, ScrollView } from '../../UIComponents';
 import { Searchbar } from 'react-native-paper';
 
@@ -38,13 +37,13 @@ class SearchScreen extends Component {
     }
 }
 
-const styles = ScaledSheet.create({
+const styles = {
     container: {
         flex: 1
     },
     headerWrapper: {
         height: 70,
     },
-})
+};
 
 export default SearchScreen;

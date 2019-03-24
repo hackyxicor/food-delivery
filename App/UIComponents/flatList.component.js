@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { FlatList } from 'react-native';
+import { Stylify } from '../Utils/dimensionHandler.utils';
 
 class UIFlatList extends Component {
     render() {
@@ -8,6 +9,8 @@ class UIFlatList extends Component {
                 showsHorizontalScrollIndicator={false}
                 showsHorizontalScrollIndicator={false}
                 {...this.props}
+                style={Stylify(this.props.style)}
+                contentContainerStyle={Stylify(this.props.contentContainerStyle)}
             />
         )
     }

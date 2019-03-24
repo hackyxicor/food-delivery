@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { ScaledSheet } from 'react-native-size-matters';
 import { View, FlatList } from '../../UIComponents';
 import { FAB, Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
 import { Colors } from '../../Constants/theme.constants';
@@ -66,7 +65,7 @@ class SavedAddressesScreen extends Component {
     }
 }
 
-const styles = ScaledSheet.create({
+const styles = {
     container: {
         flex: 1,
         backgroundColor: Colors.DarkBackground
@@ -81,7 +80,7 @@ const styles = ScaledSheet.create({
         right: 0,
         bottom: 0,
     },
-})
+};
 
 export default SavedAddressesScreen;
 

@@ -1,6 +1,5 @@
 import React from 'react';
 import { FlatList, TouchableOpacity, Image } from '../../UIComponents';
-import { ScaledSheet } from 'react-native-size-matters';
 
 const OffersHorizontalSlider = ({ offers }) => (
     <FlatList
@@ -23,7 +22,7 @@ const OffersHorizontalSlider = ({ offers }) => (
 )
 
 
-const styles = ScaledSheet.create({
+const styles = {
     list: {
         marginTop: 5,
         marginBottom: 5
@@ -43,7 +42,7 @@ const styles = ScaledSheet.create({
         alignItems: 'center',
         height: 250
     }
-})
+};
 
 
 export default OffersHorizontalSlider;

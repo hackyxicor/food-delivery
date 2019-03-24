@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { ScaledSheet } from 'react-native-size-matters';
 import { View, Text } from '../../UIComponents';
 import LottieView from 'lottie-react-native';
 import { Colors } from '../../Constants/theme.constants';
@@ -38,7 +37,7 @@ class OrdersScreen extends Component {
     }
 }
 
-const styles = ScaledSheet.create({
+const styles = {
     container: {
         flex: 1,
         alignItems: 'center',
@@ -53,6 +52,6 @@ const styles = ScaledSheet.create({
     },
     padding: {
     }
-})
+};
 
 export default OrdersScreen;

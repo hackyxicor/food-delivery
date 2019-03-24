@@ -1,6 +1,4 @@
 import React, { PureComponent } from 'react';
-import { ScaledSheet } from 'react-native-size-matters';
-
 import { View, Text } from '../../UIComponents';
 import { Colors } from '../../Constants/theme.constants';
 
@@ -17,22 +15,22 @@ class JumboText extends PureComponent {
     }
 }
 
-const styles = ScaledSheet.create({
+const styles = {
     container: {
         alignItems: 'flex-start',
         justifyContent: 'center',
         flexDirection: 'column'
     },
     text: {
-        fontSize: '20@ms0.3',
+        fontSize: 20,
         fontWeight: '500',
         color: Colors.PrimaryText
     },
     description: {
-        fontSize: '14@ms0.3',
+        fontSize: 14,
         fontWeight: '300',
         color: Colors.SecondaryText
     }
-})
+}
 
 export default JumboText;

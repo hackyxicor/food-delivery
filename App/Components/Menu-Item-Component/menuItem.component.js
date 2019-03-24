@@ -1,6 +1,5 @@
 import React from 'react';
 import { Text, TouchableOpacity, View } from '../../UIComponents';
-import { ScaledSheet } from 'react-native-size-matters';
 import MDI from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import { Colors } from '../../Constants/theme.constants';
@@ -24,7 +23,7 @@ const MenuItem = ({ menuItemConfig, navigation }) => (
     </TouchableOpacity>
 )
 
-const styles = ScaledSheet.create({
+const styles = {
     containerWrap: {
     },
     container: {
@@ -38,6 +37,6 @@ const styles = ScaledSheet.create({
         fontSize: 18,
         color: Colors.SecondaryText,
     }
-})
+};
 
 export default MenuItem;

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { TextInput } from 'react-native-paper';
-import { ScaledSheet } from 'react-native-size-matters';
 import { Colors } from '../Constants/theme.constants';
 
 import { Button } from 'react-native-paper';
+import { Stylify } from '../Utils/dimensionHandler.utils';
 
 
 class UITextInput extends Component {
@@ -11,19 +11,19 @@ class UITextInput extends Component {
         return (
             <TextInput
                 mode='flat'
-                style={styles.textInput}
+                style={Stylify(styles.textInput)}
                 {...this.props}
             />
         )
     }
 }
 
-
-const styles = ScaledSheet.create({
+const styles = {
     textInput: {
         backgroundColor: Colors.OnSurface,
-        width: '340@ms',
+        width: 300,
+        height: 50
     }
-});
+};
 
 export default UITextInput;

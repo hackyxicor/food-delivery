@@ -4,7 +4,6 @@ import {
     StackActions,
     NavigationActions
 } from 'react-navigation';
-import { ScaledSheet } from 'react-native-size-matters';
 import LottieView from 'lottie-react-native';
 
 import LocationService from '../../Services/location.service';
@@ -119,7 +118,7 @@ class ResolveLocaitonScreen extends Component {
     }
 }
 
-const styles = ScaledSheet.create({
+const styles = {
     container: {
         flex: 1,
         alignItems: 'center',
@@ -136,7 +135,7 @@ const styles = ScaledSheet.create({
         color: Colors.PrimaryText
     },
     padding: {
-        marginTop: '200@s',
+        marginTop: 100,
     },
     title: {
         fontSize: 26,
@@ -147,6 +146,6 @@ const styles = ScaledSheet.create({
         color: Colors.SecondaryText,
         textAlign: 'center'
     }
-})
+};
 
 export default ResolveLocaitonScreen;

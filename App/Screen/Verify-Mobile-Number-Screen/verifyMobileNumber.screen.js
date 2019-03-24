@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { ScaledSheet } from 'react-native-size-matters';
 import { StackActions, NavigationActions } from 'react-navigation';
 
 import { View, TextInput } from '../../UIComponents';
@@ -53,7 +52,7 @@ class VerifyMobileNumberScreen extends Component {
     }
 }
 
-const styles = ScaledSheet.create({
+const styles = {
     container: {
         flex: 1,
         backgroundColor: '#fff',
@@ -61,27 +60,27 @@ const styles = ScaledSheet.create({
         alignItems: 'center'
     },
     button: {
-        width: '340@ms',
+        width: 340,
         color: Colors.Primary,
         borderRadius: 10,
         padding: 10
     },
     positionFix: {
-        height: '10@ms',
+        height: 10,
         alignItems: 'center',
         justifyContent: 'flex-start',
         marginTop: 25,
     },
     positionFix2: {
-        height: '100@ms',
+        height: 100,
         alignItems: 'center',
         justifyContent: 'flex-end'
     },
     jumboTextWrapper: {
-        width: '340@ms',
+        width: 340,
         alignItems: 'flex-start'
     }
-});
+};
 
 export default VerifyMobileNumberScreen;
 
