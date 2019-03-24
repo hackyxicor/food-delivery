@@ -18,6 +18,7 @@ module.exports = {
         Success: '#4BB543',
         Warning: '#FFCC00',
         Error: '#CC3300',
+        Info: '#3498DB'
     },
     Theme: {
         ...DefaultTheme,

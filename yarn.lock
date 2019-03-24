@@ -5441,6 +5441,10 @@ react-native-paper@^2.13.0:
     react-lifecycles-compat "^3.0.4"
     react-native-safe-area-view "^0.12.0"
 
+react-native-parallax-header@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/react-native-parallax-header/-/react-native-parallax-header-1.1.2.tgz#7df5a792e30853e25865c2cb6de2a0fb49e0aa6f"
+
 react-native-popup-dialog@0.17.0:
   version "0.17.0"
   resolved "https://registry.yarnpkg.com/react-native-popup-dialog/-/react-native-popup-dialog-0.17.0.tgz#73e4d3b6f673a13cb933117e9eab00dca5d8e16b"

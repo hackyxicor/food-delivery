@@ -15,6 +15,7 @@ import RootNavigator from './App/Navigation/index.navigation';
 import NotifyService from './App/Services/notify.service';
 import BottomSheetService from './App/Services/bottomSheet.service';
 import FilterComponent from './App/Components/Filter-Component/filter.component';
+import MenuComponent from './App/Components/Menu-Component/menu.component';
 
 class App extends Component {
   componentDidMount() {
@@ -44,6 +45,19 @@ class App extends Component {
           }}
         >
           <FilterComponent />
+        </RBSheet>
+        <RBSheet
+          ref={ref => BottomSheetService.register('MENU', ref)}
+          height={350}
+          duration={250}
+          customStyles={{
+            container: {
+              justifyContent: 'center',
+              alignItems: 'center'
+            }
+          }}
+        >
+          <MenuComponent />
         </RBSheet>
       </PaperProvider >
     );

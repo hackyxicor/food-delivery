@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { ScrollableTabView, ScrollableTabBar } from '@valdio/react-native-scrollable-tabview'
-import { View, TouchableOpacity, Text } from '../../UIComponents';
+import { View, TouchableOpacity, Text, ScrollView } from '../../UIComponents';
 import MDI from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Colors } from '../../Constants/theme.constants';
 
@@ -21,15 +21,6 @@ const TAB_BAR_DEFAULT_STYLES = {
     tabBarTextStyle: {
         fontSize: 18
     },
-    style: {
-        borderWidth: 0,
-        tabs: {
-            height: 50,
-            flexDirection: 'row',
-            justifyContent: 'space-around',
-            borderWidth: 0,
-        },
-    },
     tabBarUnderlineStyle: {
         backgroundColor: Colors.DarkPrimary,
     },
@@ -42,6 +33,8 @@ class FilterComponent extends PureComponent {
         super(props);
         this.state = {
             sort: 1,
+            foodType: 1,
+            cuisine: [],
         }
     }
 
@@ -51,8 +44,9 @@ class FilterComponent extends PureComponent {
         return (
             <View style={{ flex: 1 }} >
                 {
-                    filterConfig.sort.map((item) => (
+                    filterConfig.sort.map((item, key) => (
                         <TouchableOpacity
+                            key={key}
                             onPress={() => this.setState({ sort: item.id })}
                             style={{ padding: 15, height: 55, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}
                         >
@@ -81,6 +75,72 @@ class FilterComponent extends PureComponent {
         )
     }
 
+    RenderFoodType = () => {
+        const { foodType } = this.state;
+
+        return (
+            <View style={{ flex: 1 }} >
+                {
+                    filterConfig.foodType.map((item, key) => (
+                        <TouchableOpacity
+                            key={key}
+                            onPress={() => this.setState({ foodType: item.id })}
+                            style={{ padding: 15, height: 55, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}
+                        >
+                            <React.Fragment>
+                                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }} >
+                                    <Text style={{ marginLeft: 15, fontSize: 16 }} >{item.name}</Text>
+                                </View>
+                                {
+                                    (item.id == foodType) ?
+                                        <MDI
+                                            name='check'
+                                            size={28}
+                                            color={Colors.Success}
+                                        /> : null
+                                }
+                            </React.Fragment>
+                        </TouchableOpacity>
+                    ))
+                }
+            </View>
+        )
+    }
+
+    RenderCuisineType = () => {
+        const { cuisine } = this.state;
+
+        return (
+            <ScrollView style={{ flex: 1 }} >
+                {
+                    filterConfig.cuisine.map((item, key) => (
+                        <TouchableOpacity
+                            key={key}
+                            onPress={() => this.setState({ cuisine: cuisine.push(item.id) })}
+                            style={{ padding: 15, height: 55, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}
+                        >
+                            <React.Fragment>
+                                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }} >
+                                    <Text style={{ marginLeft: 15, fontSize: 16 }} >{item.name}</Text>
+                                </View>
+                                {
+                                    (cuisine.indexOf(item.id) != -1) ?
+                                        <MDI
+                                            name='check'
+                                            size={28}
+                                            color={Colors.Success}
+                                        /> : null
+                                }
+                            </React.Fragment>
+                        </TouchableOpacity>
+                    ))
+                }
+            </ScrollView>
+        )
+    }
+
+
+
     render() {
         return (
             <View style={{ flex: 1 }} >
@@ -88,7 +148,8 @@ class FilterComponent extends PureComponent {
                     {...TAB_BAR_DEFAULT_STYLES}
                 >
                     <this.RenderSortFilter tabLabel="Sort" />
-                    <View tabLabel="Price" />
+                    <this.RenderFoodType tabLabel="Price" />
+                    <this.RenderCuisineType tabLabel="Cuisine" />
                 </ScrollableTabView>
                 <BottomStickButton
                     onPress={() => BottomSheetService.close('FILTER')}

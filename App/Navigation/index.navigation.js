@@ -23,6 +23,7 @@ import LoginScreen from '../Screen/Login-Screen/login.screen';
 import VerifyMobileNumberScreen from '../Screen/Verify-Mobile-Number-Screen/verifyMobileNumber.screen';
 import SetupAccountScreen from '../Screen/Setup-Account-Screen/setupAccount.screen';
 import SavedAddressesScreen from '../Screen/Saved-Addresses-Screen/savedAddresses.screen';
+import RestaurantScreen from '../Screen/Restaurant-Screen/restaurant.screen';
 
 const TabNavigator = createBottomTabNavigator(
     {
@@ -112,6 +113,18 @@ const RootNavigator = createStackNavigator(
                 header: null
             }
         },
+        Restaurant: {
+            screen: RestaurantScreen,
+            navigationOptions: {
+                header: null
+            }
+        },
+        SearchFood: {
+            screen: SearchScreen,
+            navigationOptions: {
+                header: null
+            }
+        },
         Tabs: {
             screen: TabNavigator,
             navigationOptions: {
@@ -120,7 +133,7 @@ const RootNavigator = createStackNavigator(
         }
     },
     {
-        initialRouteName: 'ResolveApp'
+        initialRouteName: 'Tabs'
     }
 )
 

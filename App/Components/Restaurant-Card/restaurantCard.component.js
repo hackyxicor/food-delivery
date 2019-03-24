@@ -5,10 +5,10 @@ import MDI from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import { Colors } from '../../Constants/theme.constants';
 
-const RestaurantCard = ({ offers }) => (
+const RestaurantCard = ({ navigation }) => (
     <TouchableOpacity
         style={styles.container}
-        onPress={() => { }}
+        onPress={() => navigation.navigate('Restaurant')}
     >
         <React.Fragment>
             <View style={{ flex: 1 }} >
@@ -69,7 +69,7 @@ const styles = ScaledSheet.create({
         color: Colors.PrimaryText
     },
     textMedium: {
-        fontSize: 16,
+        fontSize: 14,
     },
     image: {
         width: '90@ms',

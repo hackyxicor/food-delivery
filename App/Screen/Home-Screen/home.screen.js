@@ -3,6 +3,7 @@ import { ScaledSheet } from 'react-native-size-matters';
 import { View, Text, Image, ScrollView } from '../../UIComponents';
 import { Colors } from '../../Constants/theme.constants';
 import MDI from 'react-native-vector-icons/MaterialCommunityIcons';
+import { FAB } from 'react-native-paper';
 
 import HomeScreenPlaceholder from './home.loader';
 import DeliveryAddressComponent from '../../Components/Delivery-Address-Component/deliveryAddress.component';
@@ -69,23 +70,13 @@ class HomeScreen extends Component {
         return (
             <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', height: 40, paddingLeft: 10, paddingRight: 10 }} >
                 <Text>515 Restaurants</Text>
-                <TouchableOpacity
-                    style={{ flexDirection: 'row', padding: 2, alignItems: 'center', justifyContent: 'center' }}
-                    onPress={() => BottomSheetService.open('FILTER')}
-                >
-                    <MDI
-                        name={'tune-vertical'}
-                        size={22}
-                        color={Colors.PrimaryText}
-                    />
-                    <Text style={{ marginLeft: 5 }} >SORT/FILTER</Text>
-                </TouchableOpacity>
             </View>
         )
     }
 
     render() {
         const { loading, offers, restaurants } = this.state;
+        const navigation = this.props.navigation;
 
         if (loading) {
             return (
@@ -108,10 +99,25 @@ class HomeScreen extends Component {
                     <this.RenderFilterSection />
                     {
                         restaurants.map((item) => (
-                            <RestaurantCard key={String(item.id)} />
+                            <RestaurantCard
+                                key={String(item.id)}
+                                navigation={navigation}
+                            />
                         ))
                     }
                 </ScrollView>
+                <FAB
+                    label='Sort/Filter'
+                    style={styles.fab}
+                    icon={() => (
+                        <MDI
+                            name={'tune-vertical'}
+                            size={22}
+                            color={Colors.Surface}
+                        />
+                    )}
+                    onPress={() => BottomSheetService.open('FILTER')}
+                />
             </View>
         )
     }
@@ -144,7 +150,14 @@ const styles = ScaledSheet.create({
         fontSize: 10,
         color: Colors.SecondaryText,
         fontWeight: '300'
-    }
+    },
+    fab: {
+        position: 'absolute',
+        margin: 16,
+        right: 0,
+        bottom: 70,
+        backgroundColor: Colors.Primary
+    },
 })
 
 export default HomeScreen;
