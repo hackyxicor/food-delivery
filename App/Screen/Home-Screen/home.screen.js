@@ -88,7 +88,7 @@ class HomeScreen extends Component {
         return (
             <View style={styles.container} >
                 <View style={styles.headerWrapper} >
-                    <DeliveryAddressComponent />
+                    <DeliveryAddressComponent  navigation={this.props.navigation} />
                 </View>
                 <ScrollView
                     style={styles.scrollWrapper}
@@ -131,7 +131,6 @@ const styles = {
 
     },
     headerWrapper: {
-        height: 70,
         borderBottomWidth: 1,
         borderColor: Colors.Devider,
     },

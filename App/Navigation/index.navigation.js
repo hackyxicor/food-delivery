@@ -24,6 +24,7 @@ import VerifyMobileNumberScreen from '../Screen/Verify-Mobile-Number-Screen/veri
 import SetupAccountScreen from '../Screen/Setup-Account-Screen/setupAccount.screen';
 import SavedAddressesScreen from '../Screen/Saved-Addresses-Screen/savedAddresses.screen';
 import RestaurantScreen from '../Screen/Restaurant-Screen/restaurant.screen';
+import SelectDeliveryLocationScreen from '../Screen/Select-Delivery-Location-Screen/selectDeliveryLocation.screen';
 
 const TabNavigator = createBottomTabNavigator(
     {
@@ -125,6 +126,12 @@ const RootNavigator = createStackNavigator(
                 header: null
             }
         },
+        SelectDeliveryLocation: {
+            screen: SelectDeliveryLocationScreen,
+            navigationOptions: {
+                header: null
+            }
+        },
         Tabs: {
             screen: TabNavigator,
             navigationOptions: {
@@ -133,7 +140,7 @@ const RootNavigator = createStackNavigator(
         }
     },
     {
-        initialRouteName: 'ResolveApp'
+        initialRouteName: 'Tabs'
     }
 )
 

@@ -4,14 +4,14 @@ import { View, Text, TouchableOpacity } from '../../UIComponents';
 import { Colors } from '../../Constants/theme.constants';
 import BottomSheetService from '../../Services/bottomSheet.service';
 
-const DeliveryAddressComponent = ({ address }) => (
+const DeliveryAddressComponent = ({ address, navigation }) => (
     <TouchableOpacity
         style={styles.container}
-        onPress={() => { BottomSheetService.open() }}
+        onPress={() => { navigation.navigate('SelectDeliveryLocation'); }}
     >
         <React.Fragment>
             <View style={{ flexDirection: 'row', padding: 1, alignItems: 'center' }} >
-                <MDI name="map-marker" size={14} color={Colors.PrimaryText} />
+                <MDI name="map-marker" size={14} color={Colors.Success} />
                 <Text style={styles.smallText} >YOUR LOCATION</Text>
             </View>
             <View style={{ flexDirection: 'row', padding: 1 }} >
@@ -27,21 +27,21 @@ const DeliveryAddressComponent = ({ address }) => (
 
 const styles = {
     container: {
-        padding: 7,
+        padding: 5,
     },
     smallText: {
-        fontSize: 10,
-        color: Colors.PrimaryText,
+        fontSize: 12,
+        color: Colors.Success,
         fontWeight: '300',
         marginLeft: 2,
     },
     bigText: {
-        fontSize: 16,
+        fontSize: 14,
         color: Colors.PrimaryText,
         fontWeight: '400'
     },
     microText: {
-        fontSize: 10,
+        fontSize: 11,
         color: Colors.SecondaryText,
         fontWeight: '300'
     }
