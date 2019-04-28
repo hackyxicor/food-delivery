@@ -1,19 +1,18 @@
 import React from 'react';
 import { FlatList, TouchableOpacity, Image } from '../../UIComponents';
+import RestaurantCard from '../Restaurant-Card/restaurantCard.component';
 
-const OffersHorizontalSlider = ({ offers }) => (
+const SpecialHorizontalScroll = ({ restaurants, navigation }) => (
     <FlatList
         style={styles.list}
         contentContainerStyle={styles.container}
-        data={offers}
+        data={restaurants}
         renderItem={({ item }) => {
             return (
-                <TouchableOpacity
-                    style={styles.imageWrapper}
-                    onPress={() => { }}
-                >
-                    <Image source={item.source} style={styles.image} />
-                </TouchableOpacity>
+                <RestaurantCard
+                    key={String(item.id)}
+                    navigation={navigation}
+                />
             )
         }}
         horizontal
@@ -43,4 +42,4 @@ const styles = {
 };
 
 
-export default OffersHorizontalSlider;
+export default SpecialHorizontalScroll;

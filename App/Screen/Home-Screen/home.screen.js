@@ -10,6 +10,7 @@ import OffersHorizontalSlider from '../../Components/Offers-Horizontal-Slider/of
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import BottomSheetService from '../../Services/bottomSheet.service';
 import RestaurantCard from '../../Components/Restaurant-Card/restaurantCard.component';
+import SpecialHorizontalScroll from '../../Components/Specials-Horizontal-Scroll/specialHorizontalScroll.component';
 
 
 class HomeScreen extends Component {
@@ -67,8 +68,8 @@ class HomeScreen extends Component {
 
     RenderFilterSection = () => {
         return (
-            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', height: 40, paddingLeft: 10, paddingRight: 10 }} >
-                <Text>515 Restaurants</Text>
+            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start', height: 40, paddingLeft: 10, paddingRight: 10 }} >
+                <Text style={{ color: Colors.SecondaryText, fontWeight: '400', fontSize: 16 }} >515 Restaurants</Text>
             </View>
         )
     }
@@ -88,13 +89,20 @@ class HomeScreen extends Component {
         return (
             <View style={styles.container} >
                 <View style={styles.headerWrapper} >
-                    <DeliveryAddressComponent  navigation={this.props.navigation} />
+                    <DeliveryAddressComponent navigation={this.props.navigation} />
                 </View>
                 <ScrollView
                     style={styles.scrollWrapper}
                     contentContainerStyle={{ paddingBottom: 100 }}
                 >
-                    <OffersHorizontalSlider offers={offers} />
+                    <View style={{ paddingTop: 10 }} >
+                        <OffersHorizontalSlider offers={offers} />
+                    </View>
+                    <View style={{ padding: 10 }} >
+                        <View style={{ borderRadius: 1, height: 45, borderWidth: 1, borderColor: Colors.Devider, borderStyle: 'dashed' }} >
+
+                        </View>
+                    </View>
                     <this.RenderFilterSection />
                     {
                         restaurants.map((item) => (
@@ -104,6 +112,10 @@ class HomeScreen extends Component {
                             />
                         ))
                     }
+                    <SpecialHorizontalScroll
+                        navigation={navigation}
+                        restaurants={restaurants}
+                    />
                 </ScrollView>
                 <FAB
                     label='Sort/Filter'

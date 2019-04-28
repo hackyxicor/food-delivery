@@ -11,7 +11,7 @@ module.exports = {
         Inactive: '#BDBDBD',
         PrimaryText: '#212121',
         SecondaryText: '#757575',
-        Devider: '#BDBDBD',
+        Devider: '#BfBfBf',
         Surface: '#FFFFFF',
         OnPrimary: '#FFFFFF',
         DarkBackground: '#f2f2f2',

@@ -20,7 +20,7 @@ import MenuComponent from './App/Components/Menu-Component/menu.component';
 class App extends Component {
   componentDidMount() {
     SplashScreen.hide();
-    GlobalFont.applyGlobal('Muli')
+    // GlobalFont.applyGlobal('Muli')
   }
 
   render() {
