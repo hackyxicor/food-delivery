@@ -153,7 +153,6 @@ dependencies {
     implementation project(':react-native-fast-image')
     implementation project(':react-native-network-state')
     implementation project(':react-native-linear-gradient')
-    implementation project(':lottie-react-native')
     implementation project(':react-native-android-location-enabler')
     implementation project(':react-native-location')
     implementation fileTree(dir: "libs", include: ["*.jar"])

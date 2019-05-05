@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { Bubbles } from 'react-native-loader';
-import LottieView from 'lottie-react-native';
+// import { Bubbles } from 'react-native-loader';
+// import LottieView from 'lottie-react-native';
 
 import { View } from '../../UIComponents';
 
 import { Colors } from '../../Constants/theme.constants';
-import { IsFirstTimeAppUser } from '../../Logic/App.logic';
+import { GetToken } from '../../Logic/App.logic';
 
 class ResolveAppScreen extends Component {
     constructor(props) {
@@ -16,16 +16,16 @@ class ResolveAppScreen extends Component {
     }
 
     componentDidMount() {
-        this.animation.play();
+        // this.animation.play();
         setTimeout(() => {
             this.handleFirstTime();
         }, 2000);
     }
 
     handleFirstTime = async () => {
-        const isFirstTime = await IsFirstTimeAppUser();
-        if (isFirstTime.success) {
-            this.props.navigation.replace('OnBoarding');
+        const token = await GetToken();
+        if (token.success) {
+            this.props.navigation.replace('ResolveLocaiton');
             return;
         }
 
@@ -35,13 +35,13 @@ class ResolveAppScreen extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <LottieView
+                {/* <LottieView
                     style={styles.lottieView}
                     ref={animation => {
                         this.animation = animation;
                     }}
                     source={require('../../Assets/Lottie/loading.json')}
-                />
+                /> */}
             </View>
         )
     }

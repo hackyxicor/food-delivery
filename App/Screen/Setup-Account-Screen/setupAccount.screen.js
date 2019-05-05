@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
+import { Keyboard } from 'react-native';
+import { StackActions, NavigationActions } from 'react-navigation';
 
 import { View, TextInput, ScrollView } from '../../UIComponents';
 import JomboText from '../../Components/JobmoText/jobmoText.component';
 import BottomStickButton from '../../Components/BottomStickButton/bottomStickButton.component';
 import { Colors } from '../../Constants/theme.constants';
+import { IsName, IsEmail } from '../../Utils/validation.utils';
+import PrivateApi from '../../Api/private.api';
 
 class SetupAccountScreen extends Component {
     constructor(props) {
@@ -11,11 +15,29 @@ class SetupAccountScreen extends Component {
         this.state = {
             name: '',
             email: '',
+            loading: false,
+        }
+    }
+
+    proceed = async () => {
+        const { name, email } = this.state;
+
+        if (
+            IsName(name, 'Please enter correct name') &&
+            IsEmail(email, 'Please enter correct email address')
+        ) {
+            Keyboard.dismiss();
+            this.setState({ loading: true })
+            const result = await PrivateApi.UpdateProfile();
+            this.setState({ loading: false })
+            if (result.success) {
+                this.props.navigation.navigate('ResolveLocaiton');
+            }
         }
     }
 
     render() {
-        const { name, email } = this.state;
+        const { name, email, loading } = this.state;
 
         return (
             <View style={{ flex: 1 }}>
@@ -43,7 +65,8 @@ class SetupAccountScreen extends Component {
                     </View>
                 </ScrollView>
                 <BottomStickButton
-                    onPress={() => this.props.navigation.push('ResolveLocaiton')}
+                    loading={loading}
+                    onPress={this.proceed}
                 >
                     CONTINUE
                 </BottomStickButton>

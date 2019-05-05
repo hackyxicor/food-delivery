@@ -1,0 +1,5 @@
+export const GENERATE_OTP = 'GENERATE_OTP';
+export const GENERATE_OTP_LOADER = 'GENERATE_OTP_LOADER';
+
+export const VERIFY_OTP = 'VERIFY_OTP';
+export const VERIFY_OTP_LOADER = 'VERIFY_OTP_LOADER';

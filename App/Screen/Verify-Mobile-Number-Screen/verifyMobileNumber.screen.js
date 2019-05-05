@@ -1,21 +1,46 @@
 import React, { Component } from 'react';
 import { StackActions, NavigationActions } from 'react-navigation';
+import { Keyboard } from 'react-native';
 
 import { View, TextInput } from '../../UIComponents';
 import JomboText from '../../Components/JobmoText/jobmoText.component';
 import BottomStickButton from '../../Components/BottomStickButton/bottomStickButton.component';
 import { Colors } from '../../Constants/theme.constants';
+import { IsOTP } from '../../Utils/validation.utils';
+import PublicApi from '../../Api/public.api';
+import { SetToken } from '../../Logic/App.logic';
 
 class VerifyMobileNumberScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
             otp: '',
+            loading: false
+        }
+    }
+
+    verifyOTP = async () => {
+        const { otp } = this.state;
+
+        if (IsOTP(otp, 'Please enter correct OTP')) {
+            Keyboard.dismiss();
+            this.setState({ loading: true });
+            const result = await PublicApi.VerifyOTP();
+            this.setState({ loading: false });
+
+            const storeToken = await SetToken(result.response.token);
+            if (result.success && storeToken.success) {
+                const resetAction = StackActions.reset({
+                    index: 0,
+                    actions: [NavigationActions.navigate({ routeName: 'SetupAccount' })],
+                });
+                this.props.navigation.dispatch(resetAction);
+            }
         }
     }
 
     render() {
-        const { otp } = this.state;
+        const { otp, loading } = this.state;
 
         return (
             <React.Fragment>
@@ -37,13 +62,8 @@ class VerifyMobileNumberScreen extends Component {
                     </View>
                 </View>
                 <BottomStickButton
-                    onPress={() => {
-                        const resetAction = StackActions.reset({
-                            index: 0,
-                            actions: [NavigationActions.navigate({ routeName: 'SetupAccount' })],
-                        });
-                        this.props.navigation.dispatch(resetAction);
-                    }}
+                    loading={loading}
+                    onPress={this.verifyOTP}
                 >
                     VERIFY AND CONTINUE
                 </BottomStickButton>
@@ -57,7 +77,6 @@ const styles = {
         flex: 1,
         backgroundColor: '#fff',
         padding: 15,
-        alignItems: 'center'
     },
     button: {
         width: 340,
@@ -73,7 +92,7 @@ const styles = {
     },
     positionFix2: {
         height: 100,
-        alignItems: 'center',
+        alignItems: 'flex-start',
         justifyContent: 'flex-end'
     },
     jumboTextWrapper: {

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { ActivityIndicator } from 'react-native';
 import { Text, TouchableRipple } from 'react-native-paper';
 import * as Animatable from 'react-native-animatable';
 
@@ -11,16 +12,21 @@ class BottomStickButton extends Component {
     render() {
         return (
             <AnimatedTouchableRipple
+                disabled={!!this.props.loading}
                 animation="fadeInUpBig"
                 rippleColor="rgba(0, 0, 0, .32)"
                 style={Stylify({ ...styles.wrapper })}
                 {...this.props}
             >
-                <Text
-                    style={Stylify({ ...styles.text })}
-                >
-                    {this.props.children}
-                </Text>
+                {
+                    this.props.loading ?
+                        <ActivityIndicator size="large" color="#fff" /> :
+                        <Text
+                            style={Stylify({ ...styles.text })}
+                        >
+                            {this.props.children}
+                        </Text>
+                }
             </AnimatedTouchableRipple>
         )
     }

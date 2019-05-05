@@ -1,23 +1,18 @@
-// import { createStore, applyMiddleware, compose } from "redux";
-// import createSagaMiddleware from "redux-saga";
-// import saga from '../Saga';
-// import reducer from '../Reducers';
+import { createStore, applyMiddleware, compose } from "redux";
+import createSagaMiddleware from "redux-saga";
+import saga from '../Saga/index.saga';
+import reducer from '../Reducers/index.reducer';
 
-// // create the saga middleware
-// const sagaMiddleware = createSagaMiddleware();
+// create the saga middleware
+const sagaMiddleware = createSagaMiddleware();
 
+// create a redux store with our reducer above and middleware
+const store = createStore(
+    reducer,
+    compose(applyMiddleware(sagaMiddleware))
+);
 
-// // dev tools middleware
-// const reduxDevTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
+// run the saga
+sagaMiddleware.run(saga);
 
-// // create a redux store with our reducer above and middleware
-// const store = createStore(
-//     reducer,
-//     compose(applyMiddleware(sagaMiddleware), reduxDevTools)
-// );
-
-// // run the saga
-// sagaMiddleware.run(saga);
-
-// export default store;
-export default {};
+export default store;

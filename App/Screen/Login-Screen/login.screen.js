@@ -1,20 +1,38 @@
 import React, { Component } from 'react';
+import { Keyboard } from 'react-native';
+
 import { View, TextInput } from '../../UIComponents';
 import JomboText from '../../Components/JobmoText/jobmoText.component';
 import BottomStickButton from '../../Components/BottomStickButton/bottomStickButton.component';
 import { Colors } from '../../Constants/theme.constants';
-
+import PublicApi from '../../Api/public.api';
+import NotifyService from '../../Services/notify.service';
+import { IsMobilePhone } from '../../Utils/validation.utils';
 
 class LoginScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
             mobile: '',
+            loading: false,
+        }
+    }
+
+    login = async () => {
+        const { mobile } = this.state;
+        if (IsMobilePhone(mobile, 'Please enter correct mobile number')) {
+            Keyboard.dismiss();
+            this.setState({ loading: true });
+            const result = await PublicApi.GetOTP();
+            this.setState({ loading: false });
+            if (result.success) {
+                this.props.navigation.push('VerifyMobileNumber', { mobile })
+            }
         }
     }
 
     render() {
-        const { mobile } = this.state;
+        const { mobile, loading } = this.state;
 
         return (
             <React.Fragment>
@@ -36,7 +54,8 @@ class LoginScreen extends Component {
                     </View>
                 </View>
                 <BottomStickButton
-                    onPress={() => this.props.navigation.push('VerifyMobileNumber', { mobile })}
+                    loading={loading}
+                    onPress={this.login}
                 >
                     PROCEED
                 </BottomStickButton>
@@ -50,7 +69,6 @@ const styles = {
         flex: 1,
         backgroundColor: '#fff',
         padding: 15,
-        alignItems: 'center'
     },
     button: {
         width: 340,
@@ -66,8 +84,8 @@ const styles = {
     },
     positionFix2: {
         height: 100,
-        alignItems: 'center',
-        justifyContent: 'flex-end'
+        alignItems: 'flex-start',
+        justifyContent: 'flex-end',
     },
     jumboTextWrapper: {
         width: 340,

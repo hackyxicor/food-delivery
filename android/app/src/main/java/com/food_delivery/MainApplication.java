@@ -14,7 +14,6 @@ import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.dylanvann.fastimage.FastImageViewPackage;
 import com.reactnativevietnam.RNNetworkStatePackage;
 import com.BV.LinearGradient.LinearGradientPackage;
-import com.airbnb.android.react.lottie.LottiePackage;
 import com.heanoria.library.reactnative.locationenabler.RNAndroidLocationEnablerPackage;
 import com.github.reactnativecommunity.location.RNLocationPackage;
 import com.facebook.react.ReactNativeHost;
@@ -55,7 +54,6 @@ public class MainApplication extends Application implements ReactApplication {
             new FastImageViewPackage(),
             new RNNetworkStatePackage(),
             new LinearGradientPackage(),
-            new LottiePackage(),
             new RNAndroidLocationEnablerPackage(),
             new RNLocationPackage(),
             new VectorIconsPackage()
