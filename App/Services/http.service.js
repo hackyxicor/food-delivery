@@ -131,7 +131,7 @@ function getNecessaryParams(obj) {
  * @param  {object} obj
  */
 function createFinalUrl(obj) {
-    return `${BASE_URL}/${obj.url}`;
+    return `${BASE_URL}/${obj.url}?mocky-delay=1000ms`;
 }
 
 /**

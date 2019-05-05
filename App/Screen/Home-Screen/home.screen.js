@@ -4,6 +4,7 @@ import { View, Text, Image, ScrollView } from '../../UIComponents';
 import { Colors } from '../../Constants/theme.constants';
 import MDI from 'react-native-vector-icons/MaterialCommunityIcons';
 import { FAB } from 'react-native-paper';
+import Placeholder, { Line } from "rn-placeholder";
 
 import HomeScreenPlaceholder from './home.loader';
 import DeliveryAddressComponent from '../../Components/Delivery-Address-Component/deliveryAddress.component';
@@ -13,7 +14,8 @@ import BottomSheetService from '../../Services/bottomSheet.service';
 import RestaurantCard from '../../Components/Restaurant-Card/restaurantCard.component';
 import SpecialHorizontalScroll from '../../Components/Specials-Horizontal-Scroll/specialHorizontalScroll.component';
 
-import { GetOffersAction } from '../../Actions/index.action';
+import { GetOffersAction, GetRestaurantsAction } from '../../Actions/index.action';
+import GenericListing from '../../Components/Generic-Listing/genericListing.component';
 
 class HomeScreen extends Component {
     constructor(props) {
@@ -64,20 +66,28 @@ class HomeScreen extends Component {
 
     componentDidMount = () => {
         this.props.GetOffersAction();
+        this.props.GetRestaurantsAction();
     }
 
     RenderFilterSection = () => {
         return (
-            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start', height: 40, paddingLeft: 10, paddingRight: 10 }} >
-                <Text style={{ color: Colors.SecondaryText, fontWeight: '400', fontSize: 16 }} >515 Restaurants</Text>
-            </View>
+            <Placeholder
+                isReady={!this.props.restaurants.loading}
+                animation="fade"
+                whenReadyRender={() => (
+                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start', height: 40 }} >
+                        <Text style={{ color: Colors.SecondaryText, fontWeight: '400', fontSize: 16 }} >
+                            {`${this.props.restaurants.restaurants.length} Restaurants`}
+                        </Text>
+                    </View>
+                )}
+            >
+                <Line style={{ width: '40%', marginTop: 20, marginBottom: 20, height: 25 }} />
+            </Placeholder>
         )
     }
 
     render() {
-        const { loading, offers, restaurants } = this.state;
-        const navigation = this.props.navigation;
-
         return (
             <View style={styles.container} >
                 <View style={styles.headerWrapper} >
@@ -85,7 +95,7 @@ class HomeScreen extends Component {
                 </View>
                 <ScrollView
                     style={styles.scrollWrapper}
-                    contentContainerStyle={{ paddingBottom: 100 }}
+                    contentContainerStyle={{ paddingBottom: 50 }}
                 >
                     <View style={{ paddingTop: 10 }} >
                         <OffersHorizontalSlider
@@ -94,36 +104,43 @@ class HomeScreen extends Component {
                         />
                     </View>
                     <View style={{ padding: 10 }} >
-                        <View style={{ borderRadius: 1, height: 45, borderWidth: 1, borderColor: Colors.Devider, borderStyle: 'dashed' }} >
+                        <View style={{}} >
+                            <View style={{ borderRadius: 1, height: 45, borderWidth: 1, borderColor: Colors.Devider, borderStyle: 'dashed' }} >
 
+                            </View>
                         </View>
+                        <this.RenderFilterSection />
+                        <GenericListing
+                            data={this.props.restaurants.restaurants}
+                            renderComponent={({ item }) => (
+                                <RestaurantCard
+                                    key={String(item.id)}
+                                    restaurant={item}
+                                />
+                            )}
+                            loading={this.props.restaurants.loading}
+                        />
                     </View>
-                    <this.RenderFilterSection />
-                    {
-                        restaurants.map((item) => (
-                            <RestaurantCard
-                                key={String(item.id)}
-                                navigation={navigation}
-                            />
-                        ))
-                    }
-                    <SpecialHorizontalScroll
+                    {/* <SpecialHorizontalScroll
                         navigation={navigation}
                         restaurants={restaurants}
-                    />
+                    /> */}
                 </ScrollView>
-                <FAB
-                    label='Sort/Filter'
-                    style={styles.fab}
-                    icon={() => (
-                        <MDI
-                            name={'tune-vertical'}
-                            size={22}
-                            color={Colors.Surface}
-                        />
-                    )}
-                    onPress={() => BottomSheetService.open('FILTER')}
-                />
+                {
+                    !this.props.restaurants.loading ?
+                        <FAB
+                            label='Filter'
+                            style={styles.fab}
+                            icon={() => (
+                                <MDI
+                                    name={'tune-vertical'}
+                                    size={22}
+                                    color={Colors.Surface}
+                                />
+                            )}
+                            onPress={() => BottomSheetService.open('FILTER')}
+                        /> : null
+                }
             </View>
         )
     }
@@ -134,7 +151,7 @@ const styles = {
         width: 300,
         height: 300,
     },
-    scrollWrapper: {
+    container: {
 
     },
     headerWrapper: {
@@ -160,13 +177,14 @@ const styles = {
         position: 'absolute',
         margin: 16,
         right: 0,
-        bottom: 70,
+        bottom: 60,
         backgroundColor: Colors.Primary
     },
 };
 
 const mapStateToProps = state => ({
-    offers: state.offers
+    offers: state.offers,
+    restaurants: state.restaurants
 });
 
-export default connect(mapStateToProps, { GetOffersAction })(HomeScreen);
+export default connect(mapStateToProps, { GetOffersAction, GetRestaurantsAction })(HomeScreen);

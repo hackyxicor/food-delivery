@@ -1,4 +1,4 @@
-import { SET_USER, SET_OFFERS, LOADING_OFFERS, ERROR_OFFERS } from "../Constants/action.constants";
+import { SET_OFFERS, LOADING_OFFERS, ERROR_OFFERS } from "../Constants/action.constants";
 
 const defaultStore = {
     offers: [],

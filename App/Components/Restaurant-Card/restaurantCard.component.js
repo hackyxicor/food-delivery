@@ -1,29 +1,37 @@
 import React from 'react';
 import { FlatList, TouchableOpacity, Image, View, Text } from '../../UIComponents';
 import MDI from 'react-native-vector-icons/MaterialCommunityIcons';
+import FastImage from 'react-native-fast-image'
 
 import { Colors } from '../../Constants/theme.constants';
+import { navigate } from '../../Services/navigation.service';
 
-const RestaurantCard = ({ navigation, width }) => (
+const RestaurantCard = ({ restaurant, width }) => (
     <TouchableOpacity
         style={{ ...styles.container, ...{ width: width || 360 } }}
-        onPress={() => navigation.navigate('Restaurant')}
+        onPress={() => navigate('Restaurant')}
     >
         <React.Fragment>
             <View style={{ flex: 1 }} >
-                <View style={styles.image} />
-                {/* <Image style={styles.image} source={{ uri: 'https://drop.ndtv.com/albums/COOKS/chinese-vegetarian/rollsspring_640x480.jpg?output-format=webp' }} /> */}
+                <Image
+                    style={styles.image}
+                    source={{ uri: restaurant.image }}
+                    resizeMode={FastImage.resizeMode.cover}
+                />
             </View>
             <View style={{ flex: 2 }} >
-                <Text style={styles.textBig} >Restaurant Title</Text>
-                <Text style={styles.textMedium} >North Indian, Tandoor, Chinese...</Text>
+                <Text style={styles.textBig} >{restaurant.name}</Text>
+                <Text style={styles.textMedium} >{restaurant.content}</Text>
                 <View style={{ flexDirection: 'row', padding: 2, alignItems: 'center', justifyContent: 'flex-start' }} >
                     <MDI
                         name='tag'
                         size={20}
                         color={Colors.DarkPrimary}
                     />
-                    <Text style={{ ...styles.textMedium, ...{ color: Colors.DarkPrimary, marginLeft: 5 } }} r >20% discount on all orders</Text>
+                    <Text
+                        style={{ ...styles.textMedium, ...{ color: Colors.DarkPrimary, marginLeft: 5 } }} >
+                        20% discount on all orders
+                    </Text>
                 </View>
                 <View style={{ flexDirection: 'row', padding: 2, alignItems: 'center', justifyContent: 'flex-start' }} >
                     <MDI
@@ -31,7 +39,7 @@ const RestaurantCard = ({ navigation, width }) => (
                         size={20}
                         color={Colors.Primary}
                     />
-                    <Text style={{ ...styles.textMedium, ...{ color: Colors.Primary, marginLeft: 5 } }} r > Free delivery</Text>
+                    <Text style={{ ...styles.textMedium, ...{ color: Colors.Primary, marginLeft: 5 } }} > Free delivery</Text>
                 </View>
 
                 <View style={{ flexDirection: 'row', justifyContent: 'space-around' }} >
@@ -41,10 +49,10 @@ const RestaurantCard = ({ navigation, width }) => (
                             size={20}
                             color={Colors.SecondaryText}
                         />
-                        <Text style={[styles.textMedium, { color: Colors.SecondaryText, marginLeft: 5 }]} >4.1</Text>
+                        <Text style={[styles.textMedium, { color: Colors.SecondaryText }]} >{restaurant.rating}</Text>
                     </View>
                     <View style={{ flexDirection: 'row', padding: 2, alignItems: 'center', justifyContent: 'flex-start' }} >
-                        <Text style={[styles.textMedium, { color: Colors.SecondaryText, marginLeft: 5 }]} >32 mins</Text>
+                        <Text style={[styles.textMedium, { color: Colors.SecondaryText }]} >{`${restaurant.min_order_time} - ${restaurant.max_order_time} Mins`}</Text>
                     </View>
                     <View style={{ flexDirection: 'row', padding: 2, alignItems: 'center', justifyContent: 'flex-start' }} >
                         <MDI
@@ -52,7 +60,7 @@ const RestaurantCard = ({ navigation, width }) => (
                             size={20}
                             color={Colors.SecondaryText}
                         />
-                        <Text style={[styles.textMedium, { color: Colors.SecondaryText, marginLeft: 5 }]} >300 for 2</Text>
+                        <Text style={[styles.textMedium, { color: Colors.SecondaryText, marginLeft: 5 }]} >{`${restaurant.cost_per_person}`}</Text>
                     </View>
                 </View>
             </View>
@@ -64,7 +72,9 @@ const RestaurantCard = ({ navigation, width }) => (
 const styles = {
     container: {
         flexDirection: 'row',
-        padding: 10,
+        paddingTop: 10,
+        paddingBottom: 10,
+        paddingRight: 10
     },
     textBig: {
         fontSize: 18,

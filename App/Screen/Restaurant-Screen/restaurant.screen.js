@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Dimensions, Platform } from 'react-native';
+import { connect } from 'react-redux';
 import { View, ScrollView, TouchableOpacity, Text, Image } from '../../UIComponents';
 import { FAB, Portal } from 'react-native-paper';
 import MDI from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -9,6 +10,9 @@ import ReactNativeParallaxHeader from 'react-native-parallax-header';
 import { Switch } from 'react-native-paper';
 import CartButtonComponent from '../../Components/Cart-Button-Component/cartButton.component';
 import FoodComponent from '../../Components/FoodComponent/food.component';
+
+import { GetRestaurantDetailAction } from '../../Actions/index.action';
+import RestaurantScreenPlaceholder from './restaurant.placeholder';
 
 
 var { height, width } = Dimensions.get('window');
@@ -32,7 +36,7 @@ class RestaurantScreen extends Component {
     }
 
     componentDidMount = () => {
-
+        this.props.GetRestaurantDetailAction();
     }
 
     renderNavBar = () => (
@@ -49,33 +53,37 @@ class RestaurantScreen extends Component {
         </View>
     )
 
-    RestaurantHighlights = () => (
-        <View style={styles.upperContentWrapper} >
-            <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }} >
-                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }} >
-                    <MDI name="star" size={25} color={Colors.SecondaryText} />
-                    <Text>4.2</Text>
+    RestaurantHighlights = () => {
+        const { restaurant } = this.props.restaurant;
+
+        return (
+            <View style={styles.upperContentWrapper} >
+                <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }} >
+                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }} >
+                        <MDI name="star" size={25} color={Colors.SecondaryText} />
+                        <Text>{restaurant.rating}</Text>
+                    </View>
+                    <Text>100+Ratings</Text>
                 </View>
-                <Text>100+Ratings</Text>
-            </View>
-            <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }} >
-                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }} >
-                    <Text>25 mins</Text>
+                <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }} >
+                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }} >
+                        <Text>{`${restaurant.min_delivery_time} - ${restaurant.max_delivery_time} mins`}</Text>
+                    </View>
+                    <Text>Delivery time</Text>
                 </View>
-                <Text>Delivery time</Text>
-            </View>
-            <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }} >
-                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }} >
-                    <Text>300</Text>
+                <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }} >
+                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }} >
+                        <Text>300</Text>
+                    </View>
+                    <Text>Fot two</Text>
                 </View>
-                <Text>Fot two</Text>
             </View>
-        </View>
-    )
+        )
+    }
 
     VegOnly = () => (
         <View style={{ padding: 20, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center' }} >
-            <Text>VEG ONLY</Text>
+            <Text>Veg Only</Text>
             <Switch
                 value={this.state.isVeg}
                 color={Colors.Success}
@@ -144,19 +152,23 @@ class RestaurantScreen extends Component {
         )
     }
 
-    render() {
-        const { firstQuery } = this.state;
+    RenderRestaurant = () => {
+        const { restaurant } = this.props.restaurant;
+        console.log('restaurant', restaurant)
+        if (!restaurant) {
+            return null;
+        }
 
         return (
-            <View style={styles.container} >
+            <React.Fragment>
                 <ReactNativeParallaxHeader
                     headerMinHeight={HEADER_HEIGHT}
                     headerMaxHeight={250}
                     extraScrollHeight={20}
                     navbarColor={Colors.DarkPrimary}
-                    title="Lunchbox"
+                    title={restaurant.name}
                     titleStyle={styles.titleStyle}
-                    backgroundImage={images.background}
+                    backgroundImage={{ uri: restaurant.image }}
                     backgroundImageScale={1.2}
                     renderNavBar={this.renderNavBar}
                     containerStyle={{ flex: 1 }}
@@ -167,6 +179,7 @@ class RestaurantScreen extends Component {
                         onScrollEndDrag: () => console.log('onScrollEndDrag'),
                     }}
                     renderContent={this.RenderContent}
+                    alwaysShowTitle={false}
                 />
                 <FAB
                     label='Menu'
@@ -181,8 +194,18 @@ class RestaurantScreen extends Component {
                     )}
                     onPress={() => BottomSheetService.open('MENU')}
                 />
-
                 <CartButtonComponent />
+            </React.Fragment>
+        )
+    }
+
+    render() {
+        return (
+            <View style={styles.container} >
+                <RestaurantScreenPlaceholder
+                    loading={this.props.restaurant.loading}
+                    onLoadComponent={this.RenderRestaurant}
+                />
             </View>
         )
     }
@@ -229,4 +252,8 @@ const styles = {
     }
 };
 
-export default RestaurantScreen;
+const mapStateToProps = state => ({
+    restaurant: state.restaurant
+})
+
+export default connect(mapStateToProps, { GetRestaurantDetailAction })(RestaurantScreen);
