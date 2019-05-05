@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { View, Text, Image, ScrollView } from '../../UIComponents';
 import { Colors } from '../../Constants/theme.constants';
 import MDI from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -12,6 +13,7 @@ import BottomSheetService from '../../Services/bottomSheet.service';
 import RestaurantCard from '../../Components/Restaurant-Card/restaurantCard.component';
 import SpecialHorizontalScroll from '../../Components/Specials-Horizontal-Scroll/specialHorizontalScroll.component';
 
+import { GetOffersAction } from '../../Actions/index.action';
 
 class HomeScreen extends Component {
     constructor(props) {
@@ -61,9 +63,7 @@ class HomeScreen extends Component {
     }
 
     componentDidMount = () => {
-        setTimeout(() => {
-            this.setState({ loading: false })
-        }, 4000)
+        this.props.GetOffersAction();
     }
 
     RenderFilterSection = () => {
@@ -78,14 +78,6 @@ class HomeScreen extends Component {
         const { loading, offers, restaurants } = this.state;
         const navigation = this.props.navigation;
 
-        if (loading) {
-            return (
-                <React.Fragment>
-                    <HomeScreenPlaceholder />
-                </React.Fragment>
-            )
-        }
-
         return (
             <View style={styles.container} >
                 <View style={styles.headerWrapper} >
@@ -96,7 +88,10 @@ class HomeScreen extends Component {
                     contentContainerStyle={{ paddingBottom: 100 }}
                 >
                     <View style={{ paddingTop: 10 }} >
-                        <OffersHorizontalSlider offers={offers} />
+                        <OffersHorizontalSlider
+                            loading={this.props.offers.loading}
+                            offers={this.props.offers.offers}
+                        />
                     </View>
                     <View style={{ padding: 10 }} >
                         <View style={{ borderRadius: 1, height: 45, borderWidth: 1, borderColor: Colors.Devider, borderStyle: 'dashed' }} >
@@ -170,4 +165,8 @@ const styles = {
     },
 };
 
-export default HomeScreen;
+const mapStateToProps = state => ({
+    offers: state.offers
+});
+
+export default connect(mapStateToProps, { GetOffersAction })(HomeScreen);

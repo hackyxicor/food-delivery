@@ -140,7 +140,7 @@ const RootNavigator = createStackNavigator(
         }
     },
     {
-        initialRouteName: 'ResolveApp'
+        initialRouteName: 'Tabs'
     }
 )
 

@@ -16,3 +16,4 @@ class UIImage extends Component {
 }
 
 export default UIImage;
+
