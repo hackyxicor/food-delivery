@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { StackActions, NavigationActions } from 'react-navigation';
 import { Keyboard } from 'react-native';
 
 import { View, TextInput } from '../../UIComponents';
@@ -9,6 +8,7 @@ import { Colors } from '../../Constants/theme.constants';
 import { IsOTP } from '../../Utils/validation.utils';
 import PublicApi from '../../Api/public.api';
 import { SetToken } from '../../Logic/App.logic';
+import { ResetToScreen } from '../../Utils/common.utils';
 
 class VerifyMobileNumberScreen extends Component {
     constructor(props) {
@@ -30,11 +30,7 @@ class VerifyMobileNumberScreen extends Component {
 
             const storeToken = await SetToken(result.response.token);
             if (result.success && storeToken.success) {
-                const resetAction = StackActions.reset({
-                    index: 0,
-                    actions: [NavigationActions.navigate({ routeName: 'SetupAccount' })],
-                });
-                this.props.navigation.dispatch(resetAction);
+                ResetToScreen('SetupAccount', this.props.navigation);
             }
         }
     }

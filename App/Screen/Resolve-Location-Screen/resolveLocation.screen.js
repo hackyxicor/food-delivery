@@ -4,7 +4,7 @@ import {
     StackActions,
     NavigationActions
 } from 'react-navigation';
-// import LottieView from 'lottie-react-native';
+import LottieView from 'lottie-react-native';
 
 import LocationService from '../../Services/location.service';
 
@@ -77,13 +77,13 @@ class ResolveLocaitonScreen extends Component {
         return (
             <View style={styles.container}>
                 <View style={styles.lottieContainer} >
-                    {/* <LottieView
+                    <LottieView
                         style={styles.lottieView}
                         ref={animation => {
                             this.animation = animation;
                         }}
                         source={require('../../Assets/Lottie/location-pin.json')}
-                    /> */}
+                    />
                 </View>
                 {
                     resolving ?

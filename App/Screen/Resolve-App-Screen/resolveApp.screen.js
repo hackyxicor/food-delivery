@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-// import { Bubbles } from 'react-native-loader';
-// import LottieView from 'lottie-react-native';
+import LottieView from 'lottie-react-native';
 
 import { View } from '../../UIComponents';
 
@@ -16,7 +15,7 @@ class ResolveAppScreen extends Component {
     }
 
     componentDidMount() {
-        // this.animation.play();
+        this.animation.play();
         setTimeout(() => {
             this.handleFirstTime();
         }, 2000);
@@ -35,13 +34,13 @@ class ResolveAppScreen extends Component {
     render() {
         return (
             <View style={styles.container}>
-                {/* <LottieView
+                <LottieView
                     style={styles.lottieView}
                     ref={animation => {
                         this.animation = animation;
                     }}
                     source={require('../../Assets/Lottie/loading.json')}
-                /> */}
+                />
             </View>
         )
     }
