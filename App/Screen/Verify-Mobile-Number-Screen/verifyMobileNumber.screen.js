@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Keyboard } from 'react-native';
+import { connect } from 'react-redux';
 
 import { View, TextInput } from '../../UIComponents';
 import JomboText from '../../Components/JobmoText/jobmoText.component';
@@ -8,7 +9,8 @@ import { Colors } from '../../Constants/theme.constants';
 import { IsOTP } from '../../Utils/validation.utils';
 import PublicApi from '../../Api/public.api';
 import { SetToken } from '../../Logic/App.logic';
-import { ResetToScreen } from '../../Utils/common.utils';
+import { resetToScreen } from '../../Services/navigation.service';
+import { SetUserAction } from '../../Actions/index.action';
 
 class VerifyMobileNumberScreen extends Component {
     constructor(props) {
@@ -27,10 +29,10 @@ class VerifyMobileNumberScreen extends Component {
             this.setState({ loading: true });
             const result = await PublicApi.VerifyOTP();
             this.setState({ loading: false });
-
             const storeToken = await SetToken(result.response.token);
             if (result.success && storeToken.success) {
-                ResetToScreen('SetupAccount', this.props.navigation);
+                this.props.SetUserAction(result.response.user);
+                resetToScreen('SetupAccount');
             }
         }
     }
@@ -97,6 +99,6 @@ const styles = {
     }
 };
 
-export default VerifyMobileNumberScreen;
+export default connect(null, { SetUserAction })(VerifyMobileNumberScreen);
 
 

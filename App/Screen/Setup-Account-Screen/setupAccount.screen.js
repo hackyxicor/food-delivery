@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Keyboard } from 'react-native';
-import { StackActions, NavigationActions } from 'react-navigation';
+import { connect } from 'react-redux';
 
 import { View, TextInput, ScrollView } from '../../UIComponents';
 import JomboText from '../../Components/JobmoText/jobmoText.component';
@@ -8,13 +8,15 @@ import BottomStickButton from '../../Components/BottomStickButton/bottomStickBut
 import { Colors } from '../../Constants/theme.constants';
 import { IsName, IsEmail } from '../../Utils/validation.utils';
 import PrivateApi from '../../Api/private.api';
+import { SetUserAction } from '../../Actions/index.action';
+import { resetToScreen } from '../../Services/navigation.service';
 
 class SetupAccountScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: '',
-            email: '',
+            name: props.user.display_name,
+            email: props.user.email,
             loading: false,
         }
     }
@@ -31,7 +33,8 @@ class SetupAccountScreen extends Component {
             const result = await PrivateApi.UpdateProfile();
             this.setState({ loading: false })
             if (result.success) {
-                this.props.navigation.navigate('ResolveLocaiton');
+                this.props.SetUserAction(result.response);
+                resetToScreen('ResolveLocaiton');
             }
         }
     }
@@ -87,6 +90,10 @@ const styles = {
     },
 };
 
-export default SetupAccountScreen;
+const mapStateToProps = state => ({
+    user: state.user
+})
+
+export default connect(mapStateToProps, { SetUserAction })(SetupAccountScreen);
 
 

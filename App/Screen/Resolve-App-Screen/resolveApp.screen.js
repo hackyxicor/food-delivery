@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import LottieView from 'lottie-react-native';
+import { connect } from 'react-redux';
+import { GetUserAction } from '../../Actions/index.action';
 
 import { View } from '../../UIComponents';
 
 import { Colors } from '../../Constants/theme.constants';
 import { GetToken } from '../../Logic/App.logic';
+import { resetToScreen } from '../../Services/navigation.service';
 
 class ResolveAppScreen extends Component {
     constructor(props) {
@@ -16,19 +19,17 @@ class ResolveAppScreen extends Component {
 
     componentDidMount() {
         this.animation.play();
-        setTimeout(() => {
-            this.handleFirstTime();
-        }, 2000);
+        this.handleFirstTime();
     }
 
     handleFirstTime = async () => {
         const token = await GetToken();
         if (token.success) {
-            this.props.navigation.replace('ResolveLocaiton');
+            this.props.GetUserAction();
             return;
         }
 
-        this.props.navigation.replace('OnBoarding');
+        resetToScreen('OnBoarding');
     }
 
     render() {
@@ -59,4 +60,4 @@ const styles = {
     },
 };
 
-export default ResolveAppScreen;
+export default connect(null, { GetUserAction })(ResolveAppScreen);

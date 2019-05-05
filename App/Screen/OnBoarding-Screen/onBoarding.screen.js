@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Onboarding from 'react-native-onboarding-swiper';
 import LottieView from 'lottie-react-native';
 import { View } from 'react-native';
-import { ResetToScreen } from '../../Utils/common.utils.js';
+import { resetToScreen } from '../../Services/navigation.service.js';
 
 class OnBoardingScreen extends Component {
     constructor(props) {
@@ -31,7 +31,7 @@ class OnBoardingScreen extends Component {
     }
 
     done = () => {
-        ResetToScreen('Login', this.props.navigation);
+        resetToScreen('Login');
     }
 
     render() {

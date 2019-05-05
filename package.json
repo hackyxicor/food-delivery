@@ -4,7 +4,10 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest"
+    "test": "jest",
+    "codepush_command": "code-push release-react Food-Delivery/User-App-Android android --mandatory",
+    "promote": "code-push promote Food-Delivery/User-App-Android Staging Production",
+    "codepush": "npm run codepush_command && npm run promote"
   },
   "dependencies": {
     "@valdio/react-native-scrollable-tabview": "^0.8.11",
@@ -46,6 +49,7 @@
     "react-redux": "^6.0.1",
     "redux": "4.0.1",
     "redux-actions": "^2.6.5",
+    "redux-logger": "^3.0.6",
     "redux-saga": "1.0.2",
     "reduxsauce": "^1.1.0",
     "seamless-immutable": "^7.1.4",

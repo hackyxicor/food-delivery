@@ -7,6 +7,7 @@ import { Provider as PaperProvider } from 'react-native-paper';
 import SplashScreen from 'react-native-splash-screen'
 import GlobalFont from 'react-native-global-font';
 import RBSheet from "react-native-raw-bottom-sheet";
+import { Provider } from 'react-redux';
 
 import { Theme } from './App/Constants/theme.constants';
 
@@ -17,6 +18,9 @@ import BottomSheetService from './App/Services/bottomSheet.service';
 import FilterComponent from './App/Components/Filter-Component/filter.component';
 import MenuComponent from './App/Components/Menu-Component/menu.component';
 
+import { setTopLevelNavigator } from './App/Services/navigation.service';
+import store from './App/Store/index.store';
+
 class App extends Component {
   componentDidMount() {
     SplashScreen.hide();
@@ -26,7 +30,13 @@ class App extends Component {
   render() {
     return (
       <PaperProvider theme={Theme} >
-        <RootNavigator />
+        <Provider store={store} >
+          <RootNavigator
+            ref={navigatorRef => {
+              setTopLevelNavigator(navigatorRef);
+            }}
+          />
+        </Provider>
         <DropdownAlert ref={ref => NotifyService.register(ref)} />
         <NetworkState
           style={{ position: 'absolute', top: 0, right: 0, bottom: 0, left: 0 }}

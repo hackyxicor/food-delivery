@@ -1,7 +1,11 @@
 import { Get } from "../Services/http.service";
-import { GET_OFFERS, GET_RESTAURANTS, POPULAR_SEARCH, RESTAURANT_DETAIL, UPDATE_PROFILE } from "../Constants/api.constants";
+import { GET_OFFERS, GET_RESTAURANTS, POPULAR_SEARCH, RESTAURANT_DETAIL, UPDATE_PROFILE, GET_USER } from "../Constants/api.constants";
 
 class PrivateApi {
+    static GetUser = () => {
+        return Get({ url: GET_USER })
+    }
+    
     static UpdateProfile = () => {
         return Get({ url: UPDATE_PROFILE })
     }
