@@ -1,4 +1,4 @@
-import { GET_OFFERS, GET_RESTAURANTS, GET_USER, SET_USER, GET_RESTAURANT_DETAIL } from "../Constants/action.constants";
+import { GET_OFFERS, GET_RESTAURANTS, GET_USER, SET_USER, GET_RESTAURANT_DETAIL, UPDATE_CART } from "../Constants/action.constants";
 
 export const GetOffersAction = () => ({
     type: GET_OFFERS
@@ -19,4 +19,9 @@ export const SetUserAction = (user) => ({
 
 export const GetRestaurantDetailAction = () => ({
     type: GET_RESTAURANT_DETAIL
+})
+
+export const UpdateCartAction = (payload) => ({
+    type: UPDATE_CART,
+    payload
 })

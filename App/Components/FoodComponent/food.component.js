@@ -3,6 +3,7 @@ import React, { PureComponent } from 'react';
 import { View, Text, Image, TouchableOpacity } from '../../UIComponents';
 import { Colors } from '../../Constants/theme.constants';
 import AddToCartComponent from '../Add-To-Cart-Component/addToCart.component';
+import { DisplayPrice } from '../../Utils/common.utils';
 
 class FoodComponent extends PureComponent {
     constructor(props) {
@@ -29,14 +30,17 @@ class FoodComponent extends PureComponent {
     FoodItem = () => (
         <View style={{ flex: 1, alignItems: 'space-between', flexDirection: 'row', height: 50 }} >
             <View style={{ flex: 1, alignItems: 'flex-start', justifyContent: 'center' }} >
-                <Text style={{ fontSize: 16, color: Colors.PrimaryText }} >Nachos with cheese</Text>
-                <Text style={{ fontSize: 10, textAlign: 'left' }} >Starter</Text>
+                <Text style={{ fontSize: 16, color: Colors.PrimaryText }} >{this.props.product.name}</Text>
+                {
+                    (this.props.product.rating && this.props.product.rating != "null") ?
+                        <Text style={{ fontSize: 10, textAlign: 'left' }} >{this.props.product.rating}/5</Text> : null
+                }
             </View>
             <View style={{ flex: 0.5, justifyContent: 'center', alignItems: 'center' }} >
-                <Text style={{ fontSize: 16 }} >170</Text>
+                <Text style={{ fontSize: 16 }} >{DisplayPrice(this.props.product.price)}</Text>
             </View>
             <View style={{ flex: 0.5, justifyContent: 'center', alignItems: 'center' }} >
-                <AddToCartComponent />
+                <AddToCartComponent onPress={this.props.onPress} />
             </View>
         </View>
     )

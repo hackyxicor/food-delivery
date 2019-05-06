@@ -5,6 +5,7 @@ import FastImage from 'react-native-fast-image'
 
 import { Colors } from '../../Constants/theme.constants';
 import { navigate } from '../../Services/navigation.service';
+import { DisplayPrice } from '../../Utils/common.utils';
 
 const RestaurantCard = ({ restaurant, width }) => (
     <TouchableOpacity
@@ -60,7 +61,7 @@ const RestaurantCard = ({ restaurant, width }) => (
                             size={20}
                             color={Colors.SecondaryText}
                         />
-                        <Text style={[styles.textMedium, { color: Colors.SecondaryText, marginLeft: 5 }]} >{`${restaurant.cost_per_person}`}</Text>
+                        <Text style={[styles.textMedium, { color: Colors.SecondaryText, marginLeft: 5 }]} >{`${DisplayPrice(restaurant.cost_per_person)}`}</Text>
                     </View>
                 </View>
             </View>

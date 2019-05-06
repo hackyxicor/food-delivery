@@ -11,11 +11,19 @@ class AddToCartComponent extends PureComponent {
         }
     }
 
+    add = () => {
+        this.setState({ count: this.state.count + 1 }, () => this.props.onPress(this.state.count))
+    }
+
+    remove = () => {
+        this.setState({ count: this.state.count - 1 }, () => this.props.onPress(this.state.count))
+    }
+
     RenderCounter = () => {
         return (
             <View style={{ flex: 1, flexDirection: 'row' }} >
                 <TouchableOpacity
-                    onPress={() => this.setState({ count: this.state.count - 1 })}
+                    onPress={this.remove}
                     style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }} >
                     <Text>-</Text>
                 </TouchableOpacity>
@@ -23,7 +31,7 @@ class AddToCartComponent extends PureComponent {
                     <Text>{this.state.count}</Text>
                 </View>
                 <TouchableOpacity
-                    onPress={() => this.setState({ count: this.state.count + 1 })}
+                    onPress={this.add}
                     style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
                 >
                     <Text>+</Text>
@@ -37,7 +45,7 @@ class AddToCartComponent extends PureComponent {
             <TouchableOpacity
                 onPress={() => {
                     if (this.state.count == 0) {
-                        this.setState({ count: this.state.count + 1 })
+                        this.add();
                     }
                 }}
                 style={{ width: 70, height: 30, alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: Colors.Success }}

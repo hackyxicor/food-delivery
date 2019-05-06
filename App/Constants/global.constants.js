@@ -3,5 +3,6 @@ module.exports = {
     DEFAULT_HEADER: {
         'Content-Type': 'application/json;charset=UTF-8',
     },
-    TOKEN: ''
+    TOKEN: '',
+    CURRENCY: '₹'
 }

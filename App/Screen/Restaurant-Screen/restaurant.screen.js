@@ -11,8 +11,9 @@ import { Switch } from 'react-native-paper';
 import CartButtonComponent from '../../Components/Cart-Button-Component/cartButton.component';
 import FoodComponent from '../../Components/FoodComponent/food.component';
 
-import { GetRestaurantDetailAction } from '../../Actions/index.action';
+import { GetRestaurantDetailAction, UpdateCartAction } from '../../Actions/index.action';
 import RestaurantScreenPlaceholder from './restaurant.placeholder';
+import { DisplayPrice } from '../../Utils/common.utils';
 
 
 var { height, width } = Dimensions.get('window');
@@ -21,10 +22,6 @@ const IS_IPHONE_X = SCREEN_HEIGHT === 812 || SCREEN_HEIGHT === 896;
 const STATUS_BAR_HEIGHT = Platform.OS === 'ios' ? (IS_IPHONE_X ? 44 : 20) : 0;
 const HEADER_HEIGHT = Platform.OS === 'ios' ? (IS_IPHONE_X ? 88 : 64) : 64;
 const NAV_BAR_HEIGHT = HEADER_HEIGHT - STATUS_BAR_HEIGHT;
-
-const images = {
-    background: { uri: 'https://file.videopolis.com/D/9dc9f4ba-0b2d-4cbb-979f-fee7be8a4198/8485.11521.brussels.the-hotel-brussels.amenity.restaurant-AD3WAP2L-13000-853x480.jpeg' },
-};
 
 class RestaurantScreen extends Component {
     constructor(props) {
@@ -73,7 +70,7 @@ class RestaurantScreen extends Component {
                 </View>
                 <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }} >
                     <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }} >
-                        <Text>300</Text>
+                        <Text>{DisplayPrice(300)}</Text>
                     </View>
                     <Text>Fot two</Text>
                 </View>
@@ -92,55 +89,59 @@ class RestaurantScreen extends Component {
         </View>
     )
 
-    RecommendedSection = () => (
-        <View style={{ flexDirection: 'column' }} >
-            <View style={{ flexDirection: 'row', marginBottom: 20 }} >
-                <FoodComponent type="card" />
-                <FoodComponent type="card" />
-            </View>
-            <View style={{ flexDirection: 'row', marginBottom: 20 }} >
-                <FoodComponent type="card" />
-                <FoodComponent type="card" />
-            </View>
-            <View style={{ flexDirection: 'row', marginBottom: 20 }} >
-                <FoodComponent type="card" />
-                <FoodComponent type="card" />
-            </View>
-            <View style={{ flexDirection: 'row', marginBottom: 20 }} >
-                <FoodComponent type="card" />
-                <FoodComponent type="card" />
-            </View>
+    updateCard = (product, quantity) => {
+        const newProducer = Object.assign(product, { quantity });
+        this.props.UpdateCartAction(newProducer);
+    }
 
-            <View style={{ flexDirection: 'row', marginBottom: 20, paddingLeft: 10, paddingRight: 10 }} >
-                <FoodComponent />
-            </View>
+    RecommendedSection = () => {
+        const { products, menu } = this.props.restaurant.restaurant;
+        if (!products && !menu) {
+            return null;
+        }
 
-            <View style={{ flexDirection: 'row', marginBottom: 20, paddingLeft: 10, paddingRight: 10 }} >
-                <FoodComponent />
+        return (
+            <View style={{ flexDirection: 'column' }} >
+                {
+                    menu.map((menuSection) => (
+                        <React.Fragment>
+                            <View style={{ flexDirection: 'row', paddingLeft: 10, paddingRight: 10, marginTop: 15 }} >
+                                <Text style={styles.sectionTitle} >{menuSection.name}</Text>
+                            </View>
+                            <React.Fragment>
+                                {
+                                    menuSection.products.map((productId) => (
+                                        <View style={{ flexDirection: 'row', paddingLeft: 10, paddingRight: 10, paddingTop: 3, paddingBottom: 3 }} >
+                                            <FoodComponent
+                                                product={products[productId]}
+                                                onPress={(quantity) => this.updateCard(products[productId], quantity)}
+                                            />
+                                        </View>
+                                    ))
+                                }
+                            </React.Fragment>
+                        </React.Fragment>
+                    ))
+                }
+                {/* <View style={{ flexDirection: 'row', marginBottom: 20 }} >
+                    <FoodComponent type="card" />
+                    <FoodComponent type="card" />
+                </View>
+                <View style={{ flexDirection: 'row', marginBottom: 20 }} >
+                    <FoodComponent type="card" />
+                    <FoodComponent type="card" />
+                </View>
+                <View style={{ flexDirection: 'row', marginBottom: 20 }} >
+                    <FoodComponent type="card" />
+                    <FoodComponent type="card" />
+                </View>
+                <View style={{ flexDirection: 'row', marginBottom: 20 }} >
+                    <FoodComponent type="card" />
+                    <FoodComponent type="card" />
+                </View> */}
             </View>
-
-            <View style={{ flexDirection: 'row', marginBottom: 20, paddingLeft: 10, paddingRight: 10 }} >
-                <FoodComponent />
-            </View>
-
-            <View style={{ flexDirection: 'row', marginBottom: 20, paddingLeft: 10, paddingRight: 10 }} >
-                <FoodComponent />
-            </View>
-
-            <View style={{ flexDirection: 'row', marginBottom: 20, paddingLeft: 10, paddingRight: 10 }} >
-                <FoodComponent />
-            </View>
-
-            <View style={{ flexDirection: 'row', marginBottom: 20, paddingLeft: 10, paddingRight: 10 }} >
-                <FoodComponent />
-            </View>
-
-            <View style={{ flexDirection: 'row', marginBottom: 20, paddingLeft: 10, paddingRight: 10 }} >
-                <FoodComponent />
-            </View>
-
-        </View>
-    )
+        )
+    }
 
     RenderContent = () => {
         return (
@@ -154,7 +155,6 @@ class RestaurantScreen extends Component {
 
     RenderRestaurant = () => {
         const { restaurant } = this.props.restaurant;
-        console.log('restaurant', restaurant)
         if (!restaurant) {
             return null;
         }
@@ -165,23 +165,25 @@ class RestaurantScreen extends Component {
                     headerMinHeight={HEADER_HEIGHT}
                     headerMaxHeight={250}
                     extraScrollHeight={20}
+                    useNativeDriver
                     navbarColor={Colors.DarkPrimary}
+                    alwaysShowTitle
+                    alwaysShowNavBar={false}
                     title={restaurant.name}
                     titleStyle={styles.titleStyle}
                     backgroundImage={{ uri: restaurant.image }}
                     backgroundImageScale={1.2}
                     renderNavBar={this.renderNavBar}
                     containerStyle={{ flex: 1 }}
-                    contentContainerStyle={{ flexGrow: 1 }}
+                    contentContainerStyle={{ flexGrow: 1, paddingBottom: 100 }}
                     innerContainerStyle={{ flex: 1 }}
                     scrollViewProps={{
                         onScrollBeginDrag: () => console.log('onScrollBeginDrag'),
                         onScrollEndDrag: () => console.log('onScrollEndDrag'),
                     }}
                     renderContent={this.RenderContent}
-                    alwaysShowTitle={false}
                 />
-                <FAB
+                {/* <FAB
                     label='Menu'
                     color={Colors.Surface}
                     style={styles.fab}
@@ -193,13 +195,14 @@ class RestaurantScreen extends Component {
                         />
                     )}
                     onPress={() => BottomSheetService.open('MENU')}
-                />
+                /> */}
                 <CartButtonComponent />
             </React.Fragment>
         )
     }
 
     render() {
+        console.log('restaurant', this.props.restaurant);
         return (
             <View style={styles.container} >
                 <RestaurantScreenPlaceholder
@@ -249,6 +252,11 @@ const styles = {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-around'
+    },
+    sectionTitle: {
+        fontWeight: '500',
+        fontSize: 18,
+        color: Colors.PrimaryText
     }
 };
 
@@ -256,4 +264,4 @@ const mapStateToProps = state => ({
     restaurant: state.restaurant
 })
 
-export default connect(mapStateToProps, { GetRestaurantDetailAction })(RestaurantScreen);
+export default connect(mapStateToProps, { GetRestaurantDetailAction, UpdateCartAction })(RestaurantScreen);
