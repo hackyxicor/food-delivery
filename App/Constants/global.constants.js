@@ -4,5 +4,8 @@ module.exports = {
         'Content-Type': 'application/json;charset=UTF-8',
     },
     TOKEN: '',
-    CURRENCY: '₹'
+    CURRENCY: '₹',
+    GEOCODING_URL: 'http://open.mapquestapi.com/geocoding/v1',
+    GEOCODING_KEY: 'lYrP4vF3Uk5zgTiGGuEzQGwGIVDGuy24'
 }
+

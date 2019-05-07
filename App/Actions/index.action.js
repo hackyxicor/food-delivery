@@ -1,4 +1,4 @@
-import { GET_OFFERS, GET_RESTAURANTS, GET_USER, SET_USER, GET_RESTAURANT_DETAIL, UPDATE_CART } from "../Constants/action.constants";
+import { GET_OFFERS, GET_RESTAURANTS, GET_USER, SET_USER, GET_RESTAURANT_DETAIL, UPDATE_CART, SET_LAT_LNG, GET_ADDRESS } from "../Constants/action.constants";
 
 export const GetOffersAction = () => ({
     type: GET_OFFERS
@@ -24,4 +24,16 @@ export const GetRestaurantDetailAction = () => ({
 export const UpdateCartAction = (payload) => ({
     type: UPDATE_CART,
     payload
+})
+
+export const SetLatLngAction = (latitude, longitude) => ({
+    type: SET_LAT_LNG,
+    payload: {
+        latitude,
+        longitude
+    }
+})
+
+export const GetAddressAction = () => ({
+    type: GET_ADDRESS
 })

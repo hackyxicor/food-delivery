@@ -7,3 +7,4 @@ export const POPULAR_RESTAURANTS = '5ccdc2b32e00009819182b02';
 export const POPULAR_SEARCH = '5ccdc2612e0000381d182b00';
 export const RESTAURANT_DETAIL = '5cd076023200009b4400fce8';
 export const GET_USER = '5cceb092300000770752c3b0';
+export const REVERSE_GEOCODING = 'reverse';

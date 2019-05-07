@@ -14,59 +14,14 @@ import BottomSheetService from '../../Services/bottomSheet.service';
 import RestaurantCard from '../../Components/Restaurant-Card/restaurantCard.component';
 import SpecialHorizontalScroll from '../../Components/Specials-Horizontal-Scroll/specialHorizontalScroll.component';
 
-import { GetOffersAction, GetRestaurantsAction } from '../../Actions/index.action';
+import { GetOffersAction, GetRestaurantsAction, GetAddressAction } from '../../Actions/index.action';
 import GenericListing from '../../Components/Generic-Listing/genericListing.component';
 
 class HomeScreen extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            loading: false,
-            offers: [
-                {
-                    id: 1,
-                    source: { uri: 'https://static.vecteezy.com/system/resources/previews/000/330/970/large_2x/vector-best-offer-geometric-banner.jpg' }
-                },
-                {
-                    id: 2,
-                    source: { uri: 'https://static.vecteezy.com/system/resources/previews/000/330/970/large_2x/vector-best-offer-geometric-banner.jpg' }
-                },
-                {
-                    id: 3,
-                    source: { uri: 'https://static.vecteezy.com/system/resources/previews/000/330/970/large_2x/vector-best-offer-geometric-banner.jpg' }
-                },
-                {
-                    id: 4,
-                    source: { uri: 'https://static.vecteezy.com/system/resources/previews/000/330/970/large_2x/vector-best-offer-geometric-banner.jpg' }
-                },
-                {
-                    id: 5,
-                    source: { uri: 'https://static.vecteezy.com/system/resources/previews/000/330/970/large_2x/vector-best-offer-geometric-banner.jpg' }
-                }
-            ],
-            restaurants: [
-                {
-                    id: 1,
-                },
-                {
-                    id: 2,
-                },
-                {
-                    id: 3,
-                },
-                {
-                    id: 4,
-                },
-                {
-                    id: 5,
-                }
-            ]
-        }
-    }
-
     componentDidMount = () => {
         this.props.GetOffersAction();
         this.props.GetRestaurantsAction();
+        this.props.GetAddressAction();
     }
 
     RenderFilterSection = () => {
@@ -91,7 +46,10 @@ class HomeScreen extends Component {
         return (
             <View style={styles.container} >
                 <View style={styles.headerWrapper} >
-                    <DeliveryAddressComponent navigation={this.props.navigation} />
+                    <DeliveryAddressComponent
+                        address={this.props.location.address}
+                        loading={this.props.location.loading}
+                    />
                 </View>
                 <ScrollView
                     style={styles.scrollWrapper}
@@ -184,7 +142,8 @@ const styles = {
 
 const mapStateToProps = state => ({
     offers: state.offers,
-    restaurants: state.restaurants
+    restaurants: state.restaurants,
+    location: state.location
 });
 
-export default connect(mapStateToProps, { GetOffersAction, GetRestaurantsAction })(HomeScreen);
+export default connect(mapStateToProps, { GetOffersAction, GetRestaurantsAction, GetAddressAction })(HomeScreen);

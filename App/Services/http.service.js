@@ -91,7 +91,7 @@ function ApiCall({ url, method, headers, body, resolve = defaultResolve, reject 
     if (body) { // if body is attached
         postDict.body = body;
     }
-
+    console.log('url', url);
     return fetch(url, { headers, body, method, params, credentials: 'same-origin' })
         .then((response) => {
             return response.json()
@@ -131,7 +131,7 @@ function getNecessaryParams(obj) {
  * @param  {object} obj
  */
 function createFinalUrl(obj) {
-    return `${BASE_URL}/${obj.url}?mocky-delay=1000ms`;
+    return `${obj.BASE_URL || BASE_URL}/${obj.url}?mocky-delay=1000ms`;
 }
 
 /**

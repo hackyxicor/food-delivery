@@ -4,6 +4,7 @@ import userSaga from './user.saga';
 import offerSaga from './offers.saga';
 import restaurantsSaga from './restaurants.saga';
 import restaurantDetailSaga from './restaurantDetail.saga';
+import addressSaga from './address.saga';
 
 export default function* rootSaga() {
     yield all([
@@ -11,5 +12,6 @@ export default function* rootSaga() {
         offerSaga(),
         restaurantsSaga(),
         restaurantDetailSaga(),
+        addressSaga(),
     ]);
 }

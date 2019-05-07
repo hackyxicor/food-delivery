@@ -5,13 +5,13 @@ import {
     NavigationActions
 } from 'react-navigation';
 import LottieView from 'lottie-react-native';
-
+import { connect } from 'react-redux';
 import LocationService from '../../Services/location.service';
-
-import { View, Text, TouchableOpacity } from '../../UIComponents';
-
+import { View, Text } from '../../UIComponents';
 import { Colors } from '../../Constants/theme.constants';
 import BottomStickButton from '../../Components/BottomStickButton/bottomStickButton.component';
+import { SetLatLngAction } from '../../Actions/index.action';
+import { resetToScreen } from '../../Services/navigation.service';
 
 class ResolveLocaitonScreen extends Component {
     constructor(props) {
@@ -55,11 +55,12 @@ class ResolveLocaitonScreen extends Component {
         const result = await this.locationService.resolveLocationServiceState();
 
         if (result == 4) {
-            const resetAction = StackActions.reset({
-                index: 0,
-                actions: [NavigationActions.navigate({ routeName: 'Tabs' })],
-            });
-            this.props.navigation.dispatch(resetAction);
+            const geolocation = await this.locationService.getCurrentLocation();
+            if (geolocation.success) {
+                const { latitude, longitude } = geolocation.location;
+                this.props.SetLatLngAction(latitude, longitude);
+                resetToScreen('Tabs');
+            }
             return;
         }
 
@@ -148,4 +149,4 @@ const styles = {
     }
 };
 
-export default ResolveLocaitonScreen;
+export default connect(null, { SetLatLngAction })(ResolveLocaitonScreen);
