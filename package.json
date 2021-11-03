@@ -54,7 +54,7 @@
     "reduxsauce": "^1.1.0",
     "rn-placeholder": "^2.0.0",
     "seamless-immutable": "^7.1.4",
-    "validator": "^10.11.0"
+    "validator": "^13.7.0"
   },
   "devDependencies": {
     "babel-core": "^7.0.0-bridge.0",
